@@ -18,7 +18,7 @@
 
 - 그랜드 전략 장르의 JSON 스키마 (nations / characters / wars / provinces / units)
 - 그랜드 전략 톤에 맞춘 GM 시스템 프롬프트
-- **시작 가능한 샘플 시드** (예: 알도리아 1487)
+- **시작 가능한 샘플 시드** (예: 고구려 391)
 - **사용자 정의 시드**를 만드는 도구와 가이드
 - 샘플 lore (세력 / 지역 / 경제 / 법률 / 문화)
 
@@ -44,7 +44,7 @@ This is a **genre plugin** for the [`sigco3111/ai-gm`](https://github.com/sigco3
 
 - Genre-specific JSON schemas (nations, characters, wars, provinces, units)
 - GM system prompt tuned for grand-strategy tone
-- **Sample seeds** you can play right away (e.g. Aldoria 1487)
+- **Sample seeds** you can play right away (e.g. Goguryeo 391)
 - **Tools & guides for crafting your own seed**
 - Sample lore (factions, regions, economy, law, culture)
 
@@ -91,7 +91,7 @@ The GM opens with a single question — **"What kind of game do you want to play
 
 | 시드 / Seed | 시대 / Era | 톤 / Tone | 규모 / Scale | 플레이어 국가 / Player nation |
 |------|------|------|------|------|
-| **알도리아 1487** (Aldoria 1487) | 르네상스 초기 | 저마법 정치 | 중규모 | 알도리아 왕국 (입헌군주제) |
+| **고구려 391** (Goguryeo 391) | 4세기 후반 (삼국 시대 전기) | 사실주의 / 영토 확장 | 중규모 | 고구려 (광개토대왕 즉위 직후) |
 | _(더 많은 샘플 시드 추가 예정)_ | | | | |
 
 샘플 시드는 **그냥 시작점**입니다 — 본게임에 들어서면 톤·규칙·세력은 GM이 자유롭게 변주할 수 있어요.
@@ -106,26 +106,30 @@ You can also drop your own YAML/JSON into `lore/seeds/` to hand the GM a fully c
 
 ---
 
-## 🌰 샘플 시드 미리보기: 알도리아 (1487) / Sample Seed Preview: Aldoria (1487)
+## 🌰 샘플 시드 미리보기: 고구려 391 / Sample Seed Preview: Goguryeo 391
 
 > **이건 *하나의 예시*일 뿐입니다. 위 "새 게임을 시작하세요" 섹션의 옵션으로 당신이 무엇이든 정할 수 있어요.**
 >
 > **This is *one* example. The "Start a New Game" section above lets you pick anything you want.**
 
-엘리사벳 여왕의 알도리아 왕국 옥좌에서 시작. 북부 대륙의 200년 된 입헌군주국. 여섯 개의 라이벌 왕국, 두 개의 상인 공화국, 빛의 성기사단이 지도를 나눕니다.
+391년, 고구려. **태왕(광개토대왕)** 이 즉위한 지 얼마 되지 않아 동방의 패권을 향한 질풍노도의 시기가 펼쳐집니다. 한반도에서 백제·신라·가야, 만주에서 후燕·선비, 바다 건너 왜국까지 — 오합지졸의 영토가 이제 제국의 서막을 올립니다.
 
-Drop into the throne room of **Queen Elisabet** of the **Kingdom of Aldoria** — a 200-year-old constitutional monarchy in the northern continent. Six rival kingdoms, two merchant republics, and the Holy Order of Light share the map.
+The year 391. **Gwanggaeto the Great** has just ascended the throne of **Goguryeo** — and an era of storm and conquest begins. On the peninsula: Baekje, Silla, Gaya. In Manchuria: Former Yan and the Xianbei. Across the sea: Wa (Japan). What was once a small kingdom now stands at the threshold of empire.
+
+**당신의 자리 / Your seat:** 고구려 왕좌 — 광개토대왕 시점. 
+
+**Your seat:** the throne of Goguryeo — playing as Gwanggaeto the Great.
 
 **시작 조건 / Starting conditions:**
-- 국고 / Treasury: 12,400 골드 / 12,400 gold
-- 군사 / Military: 상비 35,000명 + 징집 가능 80,000명 / 35,000 standing, 80,000 leviable
-- 안정도 / Stability: 65/100
-- 진행 중 국경 분쟁 1건 / One active border skirmish (Khanate of Volgar)
-- 진행 중 혼인 제안 2건 / Two marriage proposals on the table
+- 왕조 / Dynasty: 고구려, 고국원왕 계승
+- 군사 / Military: 30,000 중앙군 + 부족별 민병 50,000 (추가 징집 가능)
+- 동맹 / Allies: 없음 (즉위 초기, 외교 재편 단계)
+- 진행 중 위협 / Active threats: 전연의 만주 잔여 세력, 백제의 북진 압력, 동부여 내부 갈등
+- 진행 중 기회 / Active opportunities: 신라와의 동맹 가능성, 왜국과의 해상 교류, 남하 정책
 
-전체 시드 파일은 `lore/seeds/aldoria-1487/`에서 확인 (Phase 1 추가).
+전체 시드 파일은 `lore/seeds/goguryeo-391/`에서 확인 (Phase 1 추가).
 
-Full seed files in `lore/seeds/aldoria-1487/` (Phase 1).
+Full seed files in `lore/seeds/goguryeo-391/` (Phase 1).
 
 ---
 
@@ -183,7 +187,7 @@ ai-gm-strategy-war/
 │   │   ├── diplomacy.md
 │   │   └── economy.md
 │   ├── seeds/                  # 시작 가능한 시드 모음 (각 시드 = 디렉토리)
-│   │   ├── aldoria-1487/       # [CHUNK: seed]
+│   │   ├── goguryeo-391/       # [CHUNK: seed]
 │   │   │   ├── seed.json       # 시드 정의
 │   │   │   ├── factions/
 │   │   │   ├── characters/
@@ -245,7 +249,7 @@ cd ai-gm && pip install -e ".[dev]" && cd ..
 | Phase | 범위 / Scope | 상태 / Status |
 |-------|-------------|------------|
 | **0. 계획** | 아키텍처, README, 시드 시스템 설계 | ✅ 진행 중 |
-| **1. 시드 시스템** | `seed_template.json` + `lore/seeds/aldoria-1487/` (샘플 1개) | 🔜 다음 |
+| **1. 시드 시스템** | `seed_template.json` + `lore/seeds/goguryeo-391/` (샘플 1개) | 🔜 다음 |
 | **2. 스키마** | 장르별 JSON 스키마 (ai-gm 코어에 등록) | 🔜 다음 |
 | **3. 샘플 시드 2~3** | 시드 옵션 확장 (예: 제국崩壊 476, 산업혁명 영국 등) | ⏳ |
 | **4. 시드 빌더 도구** | `start_game` MCP 도구 + 대화형 설정 UI | ⏳ |
