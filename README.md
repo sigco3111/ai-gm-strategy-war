@@ -1,9 +1,9 @@
 # AI Game Master — Strategy / War (장르 플러그인)
 
-> **장르 플러그인:** 중세~르네상스 시대의 턴제 그랜드 전략. 1개 국가의 통치자로서 내정·외교·전쟁을 벌이는 AI GM 시뮬레이션.
-> **Genre plugin:** Turn-based grand strategy in the medieval-to-Renaissance era. You rule one nation; the AI GM operates the rest.
+> **장르 플러그인:** 중세~근대 시대의 턴제 그랜드 전략. 1개 국가의 통치자로서 내정·외교·전쟁을 벌이는 AI GM 시뮬레이션.
+> **Genre plugin:** Turn-based grand strategy in the medieval-to-early-modern era. You rule one nation; the AI GM operates the rest.
 
-[![Genre](https://img.shields.io/badge/genre-strategy%20%2F%20war-red)](#장르-소개)
+[![Genre](https://img.shields.io/badge/genre-strategy%20%2F%20war-red)](#🎮-새-게임을-시작하세요)
 [![Depends on](https://img.shields.io/badge/depends%20on-ai--gm-blue)](#요구사항)
 [![Status](https://img.shields.io/badge/status-MVP%20planning-yellow)](#로드맵)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](#라이선스)
@@ -16,11 +16,11 @@
 
 이 저장소는 [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm) **장르 비종속 공통 엔진 위에 얹는 장르 플러그인**입니다. 공통 인프라(MCP 서버, 메모리, RAG, 검증)는 ai-gm에서 가져오고, 이 repo는 장르 콘텐츠만 담습니다:
 
-- 기본 세계관 시드 — **알도리아 왕국, 1487년**
-- 장르별 JSON 스키마 (nations / characters / wars / provinces / units)
+- 그랜드 전략 장르의 JSON 스키마 (nations / characters / wars / provinces / units)
 - 그랜드 전략 톤에 맞춘 GM 시스템 프롬프트
+- **시작 가능한 샘플 시드** (예: 알도리아 1487)
+- **사용자 정의 시드**를 만드는 도구와 가이드
 - 샘플 lore (세력 / 지역 / 경제 / 법률 / 문화)
-- 시작 가능한 캠페인 1개
 
 플레이어는 **1개 국가**의 통치자. AI GM이 **다른 모든 국가·인물·세계 사건**을 운영합니다. 1턴 = 1계절, 무한 진행.
 
@@ -42,11 +42,11 @@ ai-gm (공통 엔진) ← ai-gm-strategy-war (이 repo, 장르 1)
 
 This is a **genre plugin** for the [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm) genre-agnostic engine. The core engine (MCP server, memory, RAG, validation) lives in `ai-gm`. This repo adds only genre-specific content:
 
-- Default world seed — **Kingdom of Aldoria, year 1487**
 - Genre-specific JSON schemas (nations, characters, wars, provinces, units)
 - GM system prompt tuned for grand-strategy tone
+- **Sample seeds** you can play right away (e.g. Aldoria 1487)
+- **Tools & guides for crafting your own seed**
 - Sample lore (factions, regions, economy, law, culture)
-- One playable starter campaign
 
 The player rules **one nation**. The AI GM operates **all other nations, characters, and world events**. 1 turn = 1 season, infinite progression.
 
@@ -62,53 +62,105 @@ ai-gm (core engine) ← ai-gm-strategy-war (this repo, genre 1)
 
 ---
 
-## 🌍 기본 시드: 알도리아 (1487) / Default Seed: Aldoria (1487)
+## 🎮 새 게임을 시작하세요 / Start a New Game
 
-기본 시드는 **엘리사벳 여왕**의 알도리아 왕국 옥좌에서 시작합니다. 북부 대륙의 200년 된 입헌군주국. 여섯 개의 라이벌 왕국, 두 개의 상인 공화국, 빛의 성기사단이 지도를 나눕니다.
+> **시작할 때 미리 정해진 설정은 없습니다. 게임 시작 시 GM이 당신에게 물어보고, 당신이 결정합니다.**
+>
+> **Nothing is preset. When you start, the GM will ask you and you'll decide.**
 
-The default seed drops you into the throne room of **Queen Elisabet** of the **Kingdom of Aldoria** — a 200-year-old constitutional monarchy in the northern continent. Six rival kingdoms, two merchant republics, and the Holy Order of Light share the map.
+GM이 먼저 던지는 질문은 단 하나 — **"어떤 게임을 플레이하시겠어요?"**
+
+The GM opens with a single question — **"What kind of game do you want to play?"**
+
+### 4가지 결정 사항 / Four Decisions
+
+| # | 결정 / Decision | 옵션 (예시) / Options (examples) |
+|---|---------|------|
+| 1 | **시대** / **Era** | 고대(BC) → 중세(500~1500) → 르네상스(1500~1700) → 산업혁명(1700~1900) → 2차대전(1900~1945) → 근현대(1945~) |
+| 2 | **톤** / **Tone** | 사실주의 / 저마법 / 신화·전설 / 디스토피아 / 코미디 / 다크 |
+| 3 | **맵 규모** / **Map scale** | 소규모 (1국가 깊이, 10~30 지역) / 중규모 (5~10국, 50~150 지역) / 대규모 (20+국, 200+ 지역) |
+| 4 | **당신의 국가** / **Your nation** | GM이 생성한 후보 중 선택 — 또는 직접 설계 |
+
+**모르겠으면?** GM이 "추천 시나리오"를 제시하거나, 샘플 시드를 추천해줍니다.
+
+**Don't know?** The GM will offer a "recommended scenario" or point you to a sample seed.
+
+### 샘플 시드 (바로 시작 가능) / Sample Seeds (play immediately)
+
+미리 만들어진 시드 중 골라도 됩니다 — 결정 4가지를 한 번에 단축:
+
+| 시드 / Seed | 시대 / Era | 톤 / Tone | 규모 / Scale | 플레이어 국가 / Player nation |
+|------|------|------|------|------|
+| **알도리아 1487** (Aldoria 1487) | 르네상스 초기 | 저마법 정치 | 중규모 | 알도리아 왕국 (입헌군주제) |
+| _(더 많은 샘플 시드 추가 예정)_ | | | | |
+
+샘플 시드는 **그냥 시작점**입니다 — 본게임에 들어서면 톤·규칙·세력은 GM이 자유롭게 변주할 수 있어요.
+
+Sample seeds are just **starting points** — once the game begins, the GM may freely riff on tone, rules, and factions.
+
+### 직접 시드 만들기 (고급) / Craft Your Own Seed (advanced)
+
+`lore/seeds/`에 직접 YAML/JSON을 작성해 완전히 새로운 세계를 던져줄 수도 있습니다. `seed_template.json`을 참고하세요.
+
+You can also drop your own YAML/JSON into `lore/seeds/` to hand the GM a fully custom world. See `seed_template.json` for the schema.
+
+---
+
+## 🌰 샘플 시드 미리보기: 알도리아 (1487) / Sample Seed Preview: Aldoria (1487)
+
+> **이건 *하나의 예시*일 뿐입니다. 위 "새 게임을 시작하세요" 섹션의 옵션으로 당신이 무엇이든 정할 수 있어요.**
+>
+> **This is *one* example. The "Start a New Game" section above lets you pick anything you want.**
+
+엘리사벳 여왕의 알도리아 왕국 옥좌에서 시작. 북부 대륙의 200년 된 입헌군주국. 여섯 개의 라이벌 왕국, 두 개의 상인 공화국, 빛의 성기사단이 지도를 나눕니다.
+
+Drop into the throne room of **Queen Elisabet** of the **Kingdom of Aldoria** — a 200-year-old constitutional monarchy in the northern continent. Six rival kingdoms, two merchant republics, and the Holy Order of Light share the map.
 
 **시작 조건 / Starting conditions:**
-- 국고 / Treasury: 12,400 골드 (보통) / 12,400 gold (modest)
+- 국고 / Treasury: 12,400 골드 / 12,400 gold
 - 군사 / Military: 상비 35,000명 + 징집 가능 80,000명 / 35,000 standing, 80,000 leviable
-- 안정도 / Stability: 65/100 (남부 농민 폭동 위협) / 65/100 (peasant unrest in the south)
-- 진행 중 국경 분쟁 1건 / One active border skirmish with the Khanate of Volgar
+- 안정도 / Stability: 65/100
+- 진행 중 국경 분쟁 1건 / One active border skirmish (Khanate of Volgar)
 - 진행 중 혼인 제안 2건 / Two marriage proposals on the table
 
-`start_game({era, tone, scale, ...})` MCP 도구로 시드를 덮어쓸 수 있습니다 — GM이 시대·톤·국가 선택을 안내합니다.
+전체 시드 파일은 `lore/seeds/aldoria-1487/`에서 확인 (Phase 1 추가).
 
-Override the seed via the MCP tool `start_game({era, tone, scale, ...})` — the GM will guide you through character/nation creation.
+Full seed files in `lore/seeds/aldoria-1487/` (Phase 1).
 
 ---
 
 ## 🧱 장르 엔티티 / Genre-Specific Entities
 
+> **이 스키마는 "플레이 가능한 모든 시나리오"의 공통 부분집합입니다.** 시드마다 일부 필드가 추가/오버라이드될 수 있습니다.
+>
+> **This schema is the common subset of all playable scenarios.** Individual seeds may add or override fields.
+
 ```json
 {
   "nations": {
-    "kingdom-of-aldoria": {
-      "ruler": "queen-elisabet",
-      "government": "constitutional_monarchy",
-      "stats": {"economy": 72, "military": 58, "stability": 65, "legitimacy": 80},
-      "resources": {"gold": 12400, "food": 8500, "iron": 1200, "mana": 300},
-      "modifiers": ["trade-boom", "plague-threat"]
+    "<nation_id>": {
+      "ruler": "<character_id>",
+      "government": "monarchy|republic|theocracy|tribe|empire|...",
+      "stats": {"economy": 0-100, "military": 0-100, "stability": 0-100, "legitimacy": 0-100},
+      "resources": {"gold": 0, "food": 0, "iron": 0, "mana": 0, "...": "..."},
+      "modifiers": ["...", "..."]
     }
   },
   "characters": {
-    "queen-elisabet": {
-      "name": "Elisabet",
-      "age": 34,
-      "traits": ["paranoid", "charismatic"],
-      "location": "capital-aldoria",
-      "loyalty": 95
+    "<character_id>": {
+      "name": "...",
+      "age": 0,
+      "traits": ["...", "..."],
+      "location": "<region_id>",
+      "loyalty": 0-100
     }
   },
   "active_wars": [
     {
-      "aggressor": "khanate-of-volgar",
-      "defender": "kingdom-of-aldoria",
-      "war_score": -8,
-      "objectives": ["repel_invasion", "secure_north_pass"]
+      "aggressor": "<nation_id>",
+      "defender": "<nation_id>",
+      "war_score": -100..+100,
+      "objectives": ["...", "..."]
     }
   ]
 }
@@ -124,29 +176,25 @@ Full schema lives in `schemas/` (Phase 1).
 
 ```
 ai-gm-strategy-war/
-├── lore/                       # 정적 세계관 (Git 추적)
-│   ├── overview.md             # [CHUNK: world_overview]
-│   ├── factions/               # [CHUNK: faction]
-│   │   ├── kingdom-of-aldoria.md
-│   │   ├── khanate-of-volgar.md
-│   │   ├── republic-of-mareth.md
-│   │   └── ...
-│   ├── characters/             # [CHUNK: character]
-│   │   ├── queen-elisabet.md
-│   │   ├── prince-aldric.md
-│   │   └── ...
-│   ├── regions/                # [CHUNK: location]
-│   ├── rules/                  # [CHUNK: rules] (기본 핀 고정)
+├── lore/                       # 정적 세계관 + 청크 (Git 추적)
+│   ├── rules/                  # [CHUNK: rules] (장르 공통, 핀 고정)
 │   │   ├── succession.md
 │   │   ├── warfare.md
 │   │   ├── diplomacy.md
 │   │   └── economy.md
-│   ├── culture.md              # [CHUNK: culture]
-│   └── religion.md             # [CHUNK: culture]
+│   ├── seeds/                  # 시작 가능한 시드 모음 (각 시드 = 디렉토리)
+│   │   ├── aldoria-1487/       # [CHUNK: seed]
+│   │   │   ├── seed.json       # 시드 정의
+│   │   │   ├── factions/
+│   │   │   ├── characters/
+│   │   │   ├── regions/
+│   │   │   └── overview.md
+│   │   └── _template/          # 새 시드 작성용 템플릿
+│   └── _shared/                # 시드 간 공유되는 청크 (예: 공통 룰)
 │
 ├── schemas/                    # 장르 스키마 (Phase 1)
 ├── system_prompt.md            # GM 행동 규약
-├── seed_template.json          # 플레이어 시드 템플릿
+├── seed_template.json          # 새 시드 작성 가이드
 ├── games/                      # (gitignored) 실제 진행 게임
 │   └── .gitkeep
 ├── examples/                   # 샘플 트랜스크립트
@@ -172,7 +220,8 @@ cd ai-gm && pip install -e ".[dev]" && cd ..
 
 # 4. 에이전트에게 / Tell your agent:
 #    "Start a new game of ai-gm-strategy-war"
-#    → GM이 시대·톤·국가 선택 안내 / GM walks you through setup
+#    → GM이 "어떤 게임을 플레이하시겠어요?" 라고 물어봄
+#    → The GM will ask "What kind of game do you want to play?"
 ```
 
 ---
@@ -195,24 +244,25 @@ cd ai-gm && pip install -e ".[dev]" && cd ..
 
 | Phase | 범위 / Scope | 상태 / Status |
 |-------|-------------|------------|
-| **0. 계획** | 아키텍처, README, 시드 설계 | ✅ 진행 중 |
-| **1. 세계관** | 6개 세력, 12명 인물, 20개 지역, 룰셋 | 🔜 다음 |
+| **0. 계획** | 아키텍처, README, 시드 시스템 설계 | ✅ 진행 중 |
+| **1. 시드 시스템** | `seed_template.json` + `lore/seeds/aldoria-1487/` (샘플 1개) | 🔜 다음 |
 | **2. 스키마** | 장르별 JSON 스키마 (ai-gm 코어에 등록) | 🔜 다음 |
-| **3. 샘플 플레이** | 50턴 진행 가능한 샘플 | ⏳ |
-| **4. 이벤트 시스템** | GM이 위기·전쟁·계승 사건 자동 생성 | ⏳ |
-| **5. NPC 자율성** | AI가 다른 국가 내부 결정을 운영 | ⏳ |
+| **3. 샘플 시드 2~3** | 시드 옵션 확장 (예: 제국崩壊 476, 산업혁명 영국 등) | ⏳ |
+| **4. 시드 빌더 도구** | `start_game` MCP 도구 + 대화형 설정 UI | ⏳ |
+| **5. 샘플 플레이** | 50턴 진행 가능한 샘플 | ⏳ |
+| **6. NPC 자율성** | AI가 다른 국가 내부 결정을 운영 | ⏳ |
 
 ---
 
 ## 🎨 톤 & 영감 / Tone & Inspiration
 
-저마법(low-fantasy) 정치 전략. 마법은 있지만 미묘합니다 — 궁정 점성술사, 전장 소문, 가끔 예언적 꿈. 파이어볼 ❌, 선택받은 자 ❌.
+저마법(low-fantasy) 정치 전략이 **기본 톤**이지만, 시드에서 다른 톤을 지정하면 GM이 그대로 따릅니다.
 
 저마법 그랜드 전략 — Crusader Kings 3 + Europa Universalis 4 + 약간의 Hearts of Iron 4. 인물 중심 계승, 외교, 무역, 시대 진행.
 
 **플레이어 권리가 최우선입니다.** GM은 플레이어 입력 없이 플롯을 진행하지 않습니다. 세계는 *반응*하지 *추진*하지 않습니다.
 
-**No fireballs, no chosen ones.** Magic exists but is subtle — court astrologers, battlefield rumors, the occasional prophetic dream.
+**Low-fantasy grand strategy is the *default* tone** — but if you pick a different tone in the seed, the GM follows your lead.
 
 Low-fantasy grand strategy — Crusader Kings 3 + Europa Universalis 4 + a touch of Hearts of Iron 4. Character-driven succession, diplomacy, trade, era progression.
 
