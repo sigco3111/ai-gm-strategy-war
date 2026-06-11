@@ -1,0 +1,9 @@
+# Games directory — actual playthroughs live here (gitignored).
+# Structure (per game, created by the engine):
+#   games/<game-id>/
+#     ├── world/         # world bible snapshot at game start
+#     ├── state/         # dynamic game state (JSON, committed to per-game git if you want)
+#     ├── chapters/      # Tier 3 deep archive
+#     ├── transcript/    # Tier 1 verbatim
+#     ├── summaries/     # Tier 2
+#     └── seed.json

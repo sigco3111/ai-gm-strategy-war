@@ -1,0 +1,20 @@
+# Local game sessions (per-playthrough data)
+games/*/
+!games/.gitkeep
+
+# Python (for any helper scripts in this plugin)
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Logs
+*.log
