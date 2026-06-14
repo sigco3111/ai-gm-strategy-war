@@ -1,0 +1,57 @@
+{
+  "_about": "This is a writer's starter template for a new seed. Copy this directory's contents to lore/seeds/<your-seed-name>/, rename seed.template.json to seed.json, fill in the placeholders, and write your lore .md files. See /seed_template.json at the plugin root and /schemas/README.md for the full contract.",
+
+  "_meta": {
+    "seed_name": "<Human-readable name>",
+    "era": "<Historical moment>",
+    "tone": "<realistic | low_fantasy | mythic | dystopian | comedic | dark>",
+    "scale": "<small | medium | large>",
+    "player_nation_id": "<faction id the player will rule>",
+    "lore_overview": "overview.md",
+    "game_start_date": "<In-world year and season>"
+  },
+
+  "_notes": [
+    "All ids must match ^[a-z0-9_-]+$ (ASCII only).",
+    "Korean (or other non-ASCII) names go in the 'name' field, not the id.",
+    "game_id must be globally unique. Convention: <seed-name>-<era>.",
+    "Cross-references (ruler_id, controller_id, location_id) must point to existing entity ids.",
+    "attributes.stats.* values must be in [0, 100].",
+    "attributes.resources.* values are non-negative integers.",
+    "attributes.diplomatic_relations maps <other_faction_id> to int in [-100, +100].",
+    "Strip _about, _meta, _notes before passing to start_game."
+  ],
+
+  "game_id": "<your-seed>-<era>",
+  "schema_version": 1,
+  "turn": 0,
+  "created_at": "<ISO-8601 UTC, e.g. '2026-06-15T00:00:00Z'>",
+  "event_log": [],
+
+  "entities": [
+    {
+      "_example_type": "faction (player nation — copy this block per nation)",
+
+      "id": "faction_<your-nation>",
+      "type": "faction",
+      "name": "<Display name, e.g. '고구려 (Goguryeo)'>",
+      "attributes": {
+        "government": "<monarchy | republic | theocracy | tribe | empire>",
+        "ruler_id": "<character id, or null if no central ruler>",
+        "stats": {
+          "economy": 0,
+          "military": 0,
+          "stability": 0,
+          "legitimacy": 0
+        },
+        "resources": {
+          "gold": 0,
+          "food": 0,
+          "iron": 0
+        },
+        "modifiers": [],
+        "diplomatic_relations": {}
+      }
+    }
+  ]
+}
