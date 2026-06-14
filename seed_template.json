@@ -1,0 +1,95 @@
+{
+  "_about": "seed_template.json — author contract for new seeds. Copy to lore/seeds/<your-seed>/seed.json, fill in entities, and strip the _about / _meta / _notes keys before passing to start_game. See schemas/README.md for the Option A mapping that explains why this file looks the way it does.",
+
+  "_meta": {
+    "seed_name": "<Human-readable name, e.g. 'Goguryeo 391'>",
+    "era": "<Historical moment, e.g. 'Late 4th century CE (Three Kingdoms prelude)'>",
+    "tone": "<realistic | low_fantasy | mythic | dystopian | comedic | dark>",
+    "scale": "<small | medium | large>",
+    "player_nation_id": "<The faction id the player will rule, e.g. 'faction_goguryeo'>",
+    "lore_overview": "<Path to the seed's overview.md relative to this file, e.g. 'overview.md'>",
+    "game_start_date": "<In-world year and season, e.g. '391 CE, Spring'>"
+  },
+
+  "_notes": [
+    "1. All entity ids MUST match the pattern ^[a-z0-9_-]+$ (lowercase, digits, hyphen, underscore).",
+    "2. Korean names go in the 'name' field, NOT in the id.",
+    "3. game_id must be globally unique across all games. Convention: <seed-name>-<era>, e.g. 'goguryeo-391'.",
+    "4. Cross-references (ruler_id, controller_id, location_id) MUST reference an existing entity id in this file. The validator will reject dangling references.",
+    "5. attributes.stats.* values MUST be in [0, 100]. attributes.resources.* values are non-negative integers.",
+    "6. attributes.diplomatic_relations maps <other_faction_id> to an integer in [-100, +100]. Omit pairs that are not relevant.",
+    "7. Strip _about, _meta, _notes before passing to start_game. The ai-gm core's validate_and_parse('state', ...) will reject unknown top-level keys.",
+    "8. seed.json must validate against schemas/state.json (schema_version must equal 1).",
+    "9. Optional entity types: 'unit' (military formation), 'resource' (a single resource node). Used less often; included in core schema for completeness."
+  ],
+
+  "game_id": "<your-seed>-<era>",
+  "schema_version": 1,
+  "turn": 0,
+  "created_at": "<ISO-8601 UTC, e.g. '2026-06-15T00:00:00Z'>",
+  "event_log": [],
+  "entities": [
+    {
+      "_example_type": "faction (a nation or major political entity)",
+
+      "id": "faction_<your-nation-id>",
+      "type": "faction",
+      "name": "<Display name, e.g. '고구려 (Goguryeo)'>",
+      "attributes": {
+        "government": "<monarchy | republic | theocracy | tribe | empire | ...>",
+        "ruler_id": "<character id of the current ruler>",
+        "stats": {
+          "economy": 0,
+          "military": 0,
+          "stability": 0,
+          "legitimacy": 0
+        },
+        "resources": {
+          "gold": 0,
+          "food": 0,
+          "iron": 0
+        },
+        "modifiers": [
+          "<free-text modifier, e.g. 'recently enthroned', 'plague-affected'>"
+        ],
+        "diplomatic_relations": {
+          "<other_faction_id>": 0
+        }
+      }
+    },
+
+    {
+      "_example_type": "character (a named individual: ruler, general, advisor, envoy)",
+
+      "id": "character_<name-slug>",
+      "type": "character",
+      "name": "<Display name, e.g. '광개토대왕 (Gwanggaeto the Great)'>",
+      "attributes": {
+        "age": 0,
+        "traits": [
+          "<personality trait, e.g. 'ambitious', 'prudent'>"
+        ],
+        "location_id": "<province id where this character currently is>",
+        "loyalty": 0
+      }
+    },
+
+    {
+      "_example_type": "province (a map region: capital, city, strategic zone)",
+
+      "id": "province_<name-slug>",
+      "type": "province",
+      "name": "<Display name, e.g. '국내성 (Gungnae Seong)'>",
+      "attributes": {
+        "population": 0,
+        "controller_id": "<faction id currently controlling this province>",
+        "terrain": "<plains | hills | mountains | coast | forest | desert | marsh>",
+        "resource_yields": {
+          "gold": 0,
+          "food": 0,
+          "iron": 0
+        }
+      }
+    }
+  ]
+}
