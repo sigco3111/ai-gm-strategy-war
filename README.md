@@ -139,40 +139,14 @@ Full seed files in `lore/seeds/goguryeo-391/` (Phase 1).
 >
 > **This schema is the common subset of all playable scenarios.** Individual seeds may add or override fields.
 
-```json
-{
-  "nations": {
-    "<nation_id>": {
-      "ruler": "<character_id>",
-      "government": "monarchy|republic|theocracy|tribe|empire|...",
-      "stats": {"economy": 0-100, "military": 0-100, "stability": 0-100, "legitimacy": 0-100},
-      "resources": {"gold": 0, "food": 0, "iron": 0, "mana": 0, "...": "..."},
-      "modifiers": ["...", "..."]
-    }
-  },
-  "characters": {
-    "<character_id>": {
-      "name": "...",
-      "age": 0,
-      "traits": ["...", "..."],
-      "location": "<region_id>",
-      "loyalty": 0-100
-    }
-  },
-  "active_wars": [
-    {
-      "aggressor": "<nation_id>",
-      "defender": "<nation_id>",
-      "war_score": -100..+100,
-      "objectives": ["...", "..."]
-    }
-  ]
-}
-```
+The README's rich nested `nations{}` / `characters{}` / `active_wars[]` shape is the **author-facing** representation. The runtime contract is the **flat `entities[]`** shape defined by `ai-gm`'s `schemas/state.json` (see [schemas/README.md](schemas/README.md) for the full Option-A mapping).
 
-전체 스키마는 Phase 1에서 `schemas/`에 들어갑니다.
+**Quick mapping:**
+- Each "nation" → a `faction` entity with `attributes.{government, ruler_id, stats, resources, modifiers, diplomatic_relations}`
+- Each "character" → a `character` entity with `attributes.{age, traits, location_id, loyalty}`
+- Each "war" → encoded as a per-target integer in `faction.attributes.diplomatic_relations[<other_faction_id>]` (-100..+100, war_score)
 
-Full schema lives in `schemas/` (Phase 1).
+> Full schema lives in [schemas/README.md](schemas/README.md). The runtime contract lives in [`sigco3111/ai-gm/schemas/state.json`](https://github.com/sigco3111/ai-gm/blob/main/schemas/state.json).
 
 ---
 
@@ -180,53 +154,343 @@ Full schema lives in `schemas/` (Phase 1).
 
 ```
 ai-gm-strategy-war/
-├── lore/                       # 정적 세계관 + 청크 (Git 추적)
-│   ├── rules/                  # [CHUNK: rules] (장르 공통, 핀 고정)
-│   │   ├── succession.md
-│   │   ├── warfare.md
-│   │   ├── diplomacy.md
-│   │   └── economy.md
-│   ├── seeds/                  # 시작 가능한 시드 모음 (각 시드 = 디렉토리)
-│   │   ├── goguryeo-391/       # [CHUNK: seed]
-│   │   │   ├── seed.json       # 시드 정의
-│   │   │   ├── factions/
-│   │   │   ├── characters/
-│   │   │   ├── regions/
-│   │   │   └── overview.md
-│   │   └── _template/          # 새 시드 작성용 템플릿
-│   └── _shared/                # 시드 간 공유되는 청크 (예: 공통 룰)
+├── lore/                                  # 장르 콘텐츠 (Git 추적)
+│   ├── rules/                             # [CHUNK: rules] (장르 공통, 핀 고정)
+│   │   ├── succession.md                  # 3 chunks: succession types, claims, civil war
+│   │   ├── warfare.md                     # 3 chunks: war declaration, battle, siege
+│   │   ├── diplomacy.md                   # 3 chunks: relations, alliances, trade
+│   │   └── economy.md                     # 3 chunks: production, treasury, food/famine
+│   ├── seeds/                             # 시작 가능한 시드
+│   │   ├── goguryeo-391/                  # 샘플 시드 1 (고구려 391, 광개토대왕 즉위)
+│   │   │   ├── seed.json                  # state-shape 페이로드 (18 entities, validates)
+│   │   │   ├── overview.md                # 1-page narrative intro
+│   │   │   ├── factions/                  # 4 markdown files (goguryeo, baekje, yan, neighbors)
+│   │   │   ├── characters/                # 3 markdown files (gwanggaeto, advisors, rivals)
+│   │   │   └── regions/                   # 3 markdown files (gungnae, korean_peninsula, manchuria)
+│   │   └── _template/                     # 새 시드 작성용 스켈레톤
+│   │       ├── seed.template.json
+│   │       └── overview.template.md
+│   └── _shared/                           # 시드 간 공유 청크 (예: 공통 룰)
 │
-├── schemas/                    # 장르 스키마 (Phase 1)
-├── system_prompt.md            # GM 행동 규약
-├── seed_template.json          # 새 시드 작성 가이드
-├── games/                      # (gitignored) 실제 진행 게임
+├── schemas/                               # Genre-Specific Schema Reference
+│   └── README.md                          # Option A: rich → flat entity 매핑 문서
+│
+├── system_prompt.md                       # GM 행동 규약 (10 sections, 119 LOC)
+├── seed_template.json                     # 새 시드 작성을 위한 정형 계약
+├── games/                                 # (gitignored) 실제 진행 게임 디렉토리
 │   └── .gitkeep
-├── examples/                   # 샘플 트랜스크립트
-│   └── turn-001-founding.jsonl
+├── examples/                              # 샘플 트랜스크립트
+│   └── turn-001-founding.jsonl            # 12-line JSONL (user→GM→tool_call→tool_result 시퀀스)
+│
+├── tests/                                 # 14 pytest (TDD)
+│   ├── conftest.py                        # tmp_games_dir fixture
+│   ├── test_seed_validates.py             # 6 tests: state schema, ID pattern, cross-refs, stats
+│   ├── test_lore_chunks.py                # 5 tests: chunking, required fields, no dupes
+│   └── test_e2e_integration.py            # 3 tests: start_game, advance_turn, read_lore end-to-end
+│
 ├── LICENSE
 └── README.md
 ```
 
 ---
 
-## 🚀 빠른 시작 / Quick Start (목표)
+## 🚀 사용법 (with ai-gm core) / Usage (with ai-gm core)
+
+### 0. 사전 요구사항 / Prerequisites
+
+- **Python 3.11+** (3.13 권장 / recommended)
+- **ai-gm 코어 v0.4+** (`start_game_with_seed` 도구 포함) — [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm)
+- **이 플러그인** — `ai-gm-strategy-war` (이 repo)
+- (선택 / optional) **MCP 클라이언트** — OpenCode, Claude Code, Hermes 중 하나
+
+### 1. 설치 / Installation
 
 ```bash
-# 1. 코어 + 이 플러그인 클론 / Clone core + this plugin
+# 1.1. 클론 / Clone both repos side by side
 git clone https://github.com/sigco3111/ai-gm.git
 git clone https://github.com/sigco3111/ai-gm-strategy-war.git
+cd ai-gm-strategy-war
 
-# 2. 코어 설치 / Install core
-cd ai-gm && pip install -e ".[dev]" && cd ..
+# 1.2. ai-gm 코어 설치 (editable 모드, dev 의존성 포함) / Install core
+cd ../ai-gm
+pip install -e ".[dev]"
+cd ../ai-gm-strategy-war
 
-# 3. MCP 서버를 에이전트에 등록 / Register MCP server
-#    (OpenCode / Claude Code / Hermes 설정 — ai-gm/docs/ 참조)
-
-# 4. 에이전트에게 / Tell your agent:
-#    "Start a new game of ai-gm-strategy-war"
-#    → GM이 "어떤 게임을 플레이하시겠어요?" 라고 물어봄
-#    → The GM will ask "What kind of game do you want to play?"
+# 1.3. 의존성 확인 / Verify dependencies
+python -c "from ai_gm.state.validation import validate_and_parse; print('ai-gm OK')"
+python -m pytest tests/ -v   # 14/14 should pass
 ```
+
+> **왜 14 테스트인가?** 이 플러그인은 콘텐츠 라이브러리입니다. ai-gm 코어가 진실의 출처(source of truth)이고, 우리는 그 위에 얹는 콘텐츠가 코어의 계약을 위반하지 않는지 검증합니다. 14 테스트가 정확히 그 검증(시드 검증 + 청크 검증 + end-to-end 시드 부팅 검증)을 합니다.
+
+### 2. 환경 변수 설정 / Environment variables
+
+ai-gm 코어가 `AI_GM_PLUGINS_DIR`을 읽어 이 플러그인을 찾습니다. (선택) 임시 게임 디렉토리도 분리할 수 있습니다.
+
+```bash
+# 2.1. 플러그인 위치 노출 / Expose plugin location (colon-separated for multiple plugins)
+export AI_GM_PLUGINS_DIR="$(pwd)"
+
+# 2.2. (선택) 실제 진행 게임을 별도 디렉토리에 보관 / Keep runtime games in a separate dir
+export AI_GM_GAMES_DIR="$HOME/.ai-gm-games"
+mkdir -p "$AI_GM_GAMES_DIR"
+```
+
+> **여러 플러그인 동시 사용** — 공백 없는 콜론(`:`)으로 구분:
+> ```bash
+> export AI_GM_PLUGINS_DIR="/path/to/ai-gm-strategy-war:/path/to/ai-gm-fantasy-rpg"
+> ```
+
+### 3. MCP 서버 기동 / Start the MCP server
+
+```bash
+# 3.1. ai-gm 코어 디렉토리에서 (플러그인 환경변수 상속)
+cd ../ai-gm
+python -m ai_gm
+# 이제 FastMCP 서버가 stdin/stdout JSON-RPC로 대기 중
+```
+
+서버는 8개 도구를 노출합니다:
+
+| 도구 | 용도 | 이 플러그인과의 관련 |
+|------|------|----------------|
+| `start_game` | state-shape 페이로드로 게임 시작 | (레거시) 직접 페이로드 주입 |
+| **`start_game_with_seed`** | **시드 ID로 게임 시작** | **← 이 플러그인의 권장 진입점** |
+| `read_state` | 현재 게임 상태 조회 | 매 턴 사용 |
+| `advance_turn` | 이벤트로 상태 변경 + 턴 진행 | 매 턴 사용 |
+| `end_session` | Tier 1 → Tier 2 → Tier 3 압축 | 챕터 종료 시 |
+| `read_lore` | 청크 단위로 세계관 조회 | `lore/seeds/goguryeo-391/**/*.md`의 청크 |
+| `search_history` | Tier 3 RAG 검색 | 과거 유사 사건 |
+| `read_state_history` | 상태 변경 audit 로그 조회 | (Phase 3) |
+
+### 4. 게임 시작 / Start a game (MCP JSON-RPC 예시)
+
+#### 4.1. 시드 ID로 시작 (권장) — `start_game_with_seed`
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "start_game_with_seed",
+    "arguments": {
+      "seed_id": "goguryeo-391"
+    }
+  }
+}
+```
+
+**응답:**
+```json
+{
+  "ok": true,
+  "game_id": "goguryeo-391",
+  "state": { "game_id": "goguryeo-391", "turn": 0, "entities": [ ... 18 entities ... ] },
+  "seed_meta": {
+    "seed_name": "Goguryeo 391",
+    "era": "Late 4th century CE (Three Kingdoms prelude)",
+    "tone": "realistic",
+    "player_nation_id": "faction_goguryeo"
+  },
+  "lore_files_indexed": 6,
+  "lore_chunks_indexed": 23,
+  "world_md_path": "/.../goguryeo-391/lore/world.md"
+}
+```
+
+**동작:**
+1. 코어가 `AI_GM_PLUGINS_DIR`을 스캔
+2. `<plugin>/lore/seeds/goguryeo-391/seed.json`을 찾음
+3. `_meta`, `_about`, `_notes` 키 제거 (코어 스키마가 모르는 키)
+4. `validate_and_parse("state", payload)`로 검증 → 18 entities
+5. `store.create("goguryeo-391", state)`로 디스크에 저장
+6. Tier 1 (verbatim buffer) + Tier 3 디렉토리 초기화
+7. `<plugin>/lore/rules/*.md` + `<plugin>/lore/seeds/goguryeo-391/**.md`를 `<game_dir>/lore/world.md`로 결합
+8. 23 청크가 `read_lore`/`search_history`로 즉시 조회 가능
+
+#### 4.2. 직접 페이로드로 시작 (레거시) — `start_game`
+
+코어 1.x와의 호환성. `seed.json`을 직접 읽어 `_meta` 키를 직접 제거한 후:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "method": "tools/call",
+  "params": {
+    "name": "start_game",
+    "arguments": {
+      "payload": { /* the seed.json content with _meta stripped */ }
+    }
+  }
+}
+```
+
+> **권장하지 않는 이유**: 시드 ID 한 개로 충분한 작업을 100+ 라인의 페이로드 + `_meta` 수동 제거로 확장. `start_game_with_seed`를 쓰세요.
+
+### 5. 첫 턴 플레이 / Play the first turn
+
+`start_game_with_seed`가 성공한 후, `read_state`로 현재 상태를 읽고, `advance_turn`으로 첫 이벤트를 제출:
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 4,
+  "method": "tools/call",
+  "params": {
+    "name": "read_state",
+    "arguments": { "game_id": "goguryeo-391" }
+  }
+}
+```
+
+```json
+{
+  "jsonrpc": "2.0",
+  "id": 5,
+  "method": "tools/call",
+  "params": {
+    "name": "advance_turn",
+    "arguments": {
+      "game_id": "goguryeo-391",
+      "event": {
+        "event_id": "ev-founding-001",
+        "turn": 0,
+        "actor_id": "character_gwanggaeto",
+        "action": "diplomacy",
+        "payload": {
+          "target_faction_id": "faction_silla",
+          "treaty_type": "defensive",
+          "gifts": ["10_gold", "5_iron"]
+        },
+        "reason": "Founding action: open diplomatic channel with Silla."
+      }
+    }
+  }
+}
+```
+
+GM은 도구 결과를 받아 서술로 풀어냅니다. **임의 숫자 금지** — `treasury`, `casualties`, `diplomacy_reputation` 같은 값은 모두 도구 호출 결과에서 와야 합니다.
+
+### 6. OpenCode / Claude Code / Hermes에서 사용 / Using with AI agents
+
+#### OpenCode
+```json
+// ~/.config/opencode/mcp.json
+{
+  "mcpServers": {
+    "ai-gm": {
+      "command": "python",
+      "args": ["-m", "ai_gm"],
+      "cwd": "/path/to/ai-gm",
+      "env": {
+        "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war",
+        "AI_GM_GAMES_DIR": "/path/to/your/games/dir"
+      }
+    }
+  }
+}
+```
+
+#### Claude Code
+```json
+// ~/.claude/mcp.json
+{
+  "mcpServers": {
+    "ai-gm": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-m", "ai_gm"],
+      "cwd": "/path/to/ai-gm",
+      "env": {
+        "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war"
+      }
+    }
+  }
+}
+```
+
+에이전트 시작 시 이렇게 말하세요:
+> "Start a new game of ai-gm-strategy-war with the goguryeo-391 seed"
+
+에이전트는 코어의 `start_game_with_seed`를 호출하여 게임을 부팅하고, 이후 `read_state` → `advance_turn` 사이클을 돌립니다.
+
+### 7. 수동 QA (개발자용) / Manual QA (for developers)
+
+```bash
+# ai-gm 코어의 수동 QA 스크립트 — 이 플러그인도 자동으로 exercise함
+cd ../ai-gm
+python scripts/manual_qa.py 2>&1 | tee /tmp/manual_qa_phase4.log
+```
+
+이 스크립트는 **13 round-trips**를 수행합니다:
+- 5개 (Phase 1) demo-001 round-trips
+- 1개 구조화된 오류 (GAME_EXISTS)
+- 4개 (Phase 2+3) 도구: read_lore, search_history, end_session, read_state_history
+- **3개 (Phase 4) 플러그인 round-trips**: `start_game_with_seed("goguryeo-391")` → `read_lore("Gungnae Seong")` → `advance_turn`
+
+`ALL CHECKS PASSED (Phase 3 + Phase 4)`가 보이면 정상.
+
+### 8. 자신만의 시드 작성 / Author your own seed
+
+`lore/seeds/_template/`을 복사해 시드 디렉토리 하나를 만들고, 4가지를 채우면 됩니다:
+
+```
+lore/seeds/<your-seed-id>/
+├── seed.json              # state-shape JSON (schema_version=1, entities)
+├── overview.md            # 자유 형식 (chunk 헤더 없어도 됨)
+├── factions/              # [CHUNK: faction -- <name>] 형식
+├── characters/             # [CHUNK: character -- <name>] 형식
+└── regions/               # [CHUNK: location -- <name>] 형식
+```
+
+**필수 검증 (run this before committing):**
+```bash
+cd ../ai-gm-strategy-war
+PYTHONPATH="../ai-gm/src" python -m pytest tests/ -v
+# 14/14 pass = good to commit
+```
+
+**종족(magic systems), 경제 자원, 전쟁 등**을 추가하려면 `lore/rules/`에 새 청크 파일을 추가하세요. `seed_id` 형식:
+- ASCII 소문자 + 숫자 + `-` + `_` 만
+- 한국어 이름은 반드시 `name` 필드에 (id에 한국어 금지)
+- 예: `goguryeo-391`, `baekje-396`, `rome-476`, `industrial-england-1850`
+
+### 9. 디버깅 팁 / Debugging tips
+
+- **시드를 못 찾을 때** — `AI_GM_PLUGINS_DIR`이 올바른지 확인, `<plugin>/lore/seeds/<seed_id>/seed.json`이 존재하는지 확인, `seed.json`의 `game_id`가 디렉토리 이름과 일치하는지 확인
+- **검증 실패** — pytest의 `test_seed_validates.py`로 정확한 위반 사항을 찾을 수 있음
+- **lore 청크가 안 보일 때** — `seed.json`의 `game_id`와 요청한 `seed_id`가 일치하는지 확인 (대소문자 구분)
+- **청크 포맷 오류** — `## [CHUNK: TYPE -- NAME]` H2 헤더, TYPE은 `character|location|faction|event|rule|item|misc` 중 하나
+
+### 10. 통합 테스트 / Running the integration tests
+
+```bash
+cd ../ai-gm-strategy-war
+PYTHONPATH="../ai-gm/src" python -m pytest tests/ -v
+```
+
+**예상 출력:**
+```
+tests/test_seed_validates.py::test_seed_json_validates_against_state_schema PASSED
+tests/test_seed_validates.py::test_seed_template_json_validates PASSED
+tests/test_seed_validates.py::test_seed_entity_ids_match_strict_pattern PASSED
+tests/test_seed_validates.py::test_seed_cross_references_resolve PASSED
+tests/test_seed_validates.py::test_seed_stats_in_range PASSED
+tests/test_seed_validates.py::test_seed_has_three_entity_types PASSED
+tests/test_lore_chunks.py::test_all_rules_md_files_chunk PASSED
+tests/test_lore_chunks.py::test_all_seed_md_files_chunk PASSED
+tests/test_lore_chunks.py::test_all_chunks_have_required_fields PASSED
+tests/test_lore_chunks.py::test_no_duplicate_chunk_names_within_file PASSED
+tests/test_lore_chunks.py::test_lore_chunk_count_is_substantial PASSED
+tests/test_e2e_integration.py::test_e2e_start_game_from_seed_creates_state_file PASSED
+tests/test_e2e_integration.py::test_e2e_advance_first_turn_succeeds PASSED
+tests/test_e2e_integration.py::test_e2e_read_lore_finds_gungnae_chunk PASSED
+14 passed in 0.35s
+```
+
+14개 모두 통과하면 이 플러그인은 ai-gm 코어와의 계약을 100% 지킵니다.
 
 ---
 
@@ -248,11 +512,11 @@ cd ai-gm && pip install -e ".[dev]" && cd ..
 
 | Phase | 범위 / Scope | 상태 / Status |
 |-------|-------------|------------|
-| **0. 계획** | 아키텍처, README, 시드 시스템 설계 | ✅ 진행 중 |
-| **1. 시드 시스템** | `seed_template.json` + `lore/seeds/goguryeo-391/` (샘플 1개) | 🔜 다음 |
-| **2. 스키마** | 장르별 JSON 스키마 (ai-gm 코어에 등록) | 🔜 다음 |
-| **3. 샘플 시드 2~3** | 시드 옵션 확장 (예: 제국崩壊 476, 산업혁명 영국 등) | ⏳ |
-| **4. 시드 빌더 도구** | `start_game` MCP 도구 + 대화형 설정 UI | ⏳ |
+| **0. 계획** | 아키텍처, README, 시드 시스템 설계 | ✅ 완료 |
+| **1. 시드 시스템** | `seed_template.json` + `lore/seeds/goguryeo-391/` (샘플 1개) + 14 tests | ✅ 완료 (10 커밋) |
+| **2. 스키마** | 장르별 JSON 스키마 — 코어의 `start_game_with_seed`로 통합됨 | ✅ 완료 (ai-gm 코어 Phase 4) |
+| **3. 샘플 시드 2~3** | 시드 옵션 확장 (예: 제국崩壊 476, 산업혁명 영국 등) | ⏳ 다음 |
+| **4. 시드 빌더 도구** | `start_game_with_seed`는 ✅ 완료. 대화형 설정 UI는 ⏳ | ⏳ 부분 |
 | **5. 샘플 플레이** | 50턴 진행 가능한 샘플 | ⏳ |
 | **6. NPC 자율성** | AI가 다른 국가 내부 결정을 운영 | ⏳ |
 
@@ -276,7 +540,15 @@ Low-fantasy grand strategy — Crusader Kings 3 + Europa Universalis 4 + a touch
 
 ## 📚 함께 보기 / See Also
 
-- [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm) — 공통 엔진 / shared engine
+### 의존성 / Dependencies
+- [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm) — **공통 엔진** (이 플러그인이 의존). v0.4+는 `start_game_with_seed` 도구 포함.
+
+### 형제 플러그인 / Sibling plugins
+- [`sigco3111/ai-gm-fantasy-rpg`](https://github.com/sigco3111/ai-gm-fantasy-rpg) — 판타지 RPG (드래곤 시대 1024)
+- [`sigco3111/ai-gm-sci-fi-explore`](https://github.com/sigco3111/ai-gm-sci-fi-explore) — SF 탐험 (인류 진출기 2247)
+- [`sigco3111/ai-gm-mystery-detective`](https://github.com/sigco3111/ai-gm-mystery-detective) — 미스터리/탐정 (하버튼 저택 1923)
+
+### 디자인 참조 / Design references
 - [ai-gm-architecture.md](https://gist.github.com/sigco3111/) — 풀 디자인 문서 (한글) / full design doc (Korean)
 
 ## 📄 라이선스 / License
