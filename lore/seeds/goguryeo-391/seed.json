@@ -1,0 +1,419 @@
+{
+  "_meta": {
+    "seed_name": "Goguryeo 391",
+    "era": "Late 4th century CE (Three Kingdoms prelude)",
+    "tone": "realistic",
+    "scale": "medium (7 nations, 6 provinces represented)",
+    "player_nation_id": "faction_goguryeo",
+    "lore_overview": "overview.md",
+    "game_start_date": "391 CE, Spring"
+  },
+
+  "game_id": "goguryeo-391",
+  "schema_version": 1,
+  "turn": 0,
+  "created_at": "2026-06-15T00:00:00Z",
+  "event_log": [],
+
+  "entities": [
+    {
+      "id": "faction_goguryeo",
+      "type": "faction",
+      "name": "고구려 (Goguryeo)",
+      "attributes": {
+        "government": "monarchy",
+        "ruler_id": "character_gwanggaeto",
+        "stats": {
+          "economy": 55,
+          "military": 75,
+          "stability": 70,
+          "legitimacy": 65
+        },
+        "resources": {
+          "gold": 800,
+          "food": 2200,
+          "iron": 400
+        },
+        "modifiers": [
+          "sosurim-reform-legacy",
+          "recently-enthroned",
+          "grand-strategic-tradition"
+        ],
+        "diplomatic_relations": {
+          "faction_baekje": -75,
+          "faction_later_yan": -25,
+          "faction_silla": 30,
+          "faction_gaya": 10,
+          "faction_wa": 0,
+          "faction_eastern_buyeo": 40
+        }
+      }
+    },
+    {
+      "id": "faction_baekje",
+      "type": "faction",
+      "name": "백제 (Baekje)",
+      "attributes": {
+        "government": "monarchy",
+        "ruler_id": "character_baekje_asin",
+        "stats": {
+          "economy": 75,
+          "military": 80,
+          "stability": 80,
+          "legitimacy": 85
+        },
+        "resources": {
+          "gold": 1500,
+          "food": 3000,
+          "iron": 600
+        },
+        "modifiers": [
+          "geunchogo-legacy",
+          "dominant-power",
+          "han-river-breadbasket"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": -75,
+          "faction_later_yan": 0,
+          "faction_silla": -10,
+          "faction_gaya": 15,
+          "faction_wa": 25,
+          "faction_eastern_buyeo": 0
+        }
+      }
+    },
+    {
+      "id": "faction_later_yan",
+      "type": "faction",
+      "name": "후연 (Later Yan)",
+      "attributes": {
+        "government": "empire",
+        "ruler_id": "character_later_yan_murongchui",
+        "stats": {
+          "economy": 60,
+          "military": 85,
+          "stability": 60,
+          "legitimacy": 70
+        },
+        "resources": {
+          "gold": 1200,
+          "food": 2500,
+          "iron": 500
+        },
+        "modifiers": [
+          "xianbei-cavalry",
+          "liaodong-contested",
+          "murong-expansionist"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": -25,
+          "faction_baekje": 0,
+          "faction_silla": 0,
+          "faction_gaya": 0,
+          "faction_wa": 0,
+          "faction_eastern_buyeo": 0
+        }
+      }
+    },
+    {
+      "id": "faction_silla",
+      "type": "faction",
+      "name": "신라 (Silla)",
+      "attributes": {
+        "government": "monarchy",
+        "ruler_id": "character_silla_naemul",
+        "stats": {
+          "economy": 65,
+          "military": 50,
+          "stability": 85,
+          "legitimacy": 75
+        },
+        "resources": {
+          "gold": 1000,
+          "food": 2000,
+          "iron": 300
+        },
+        "modifiers": [
+          "buddhist-state",
+          "six-village-confederacy",
+          "cautious-diplomacy"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": 30,
+          "faction_baekje": -10,
+          "faction_later_yan": 0,
+          "faction_gaya": 5,
+          "faction_wa": -30,
+          "faction_eastern_buyeo": 0
+        }
+      }
+    },
+    {
+      "id": "faction_gaya",
+      "type": "faction",
+      "name": "가야 (Gaya)",
+      "attributes": {
+        "government": "tribe",
+        "ruler_id": null,
+        "stats": {
+          "economy": 60,
+          "military": 35,
+          "stability": 55,
+          "legitimacy": 50
+        },
+        "resources": {
+          "gold": 600,
+          "food": 1200,
+          "iron": 800
+        },
+        "modifiers": [
+          "iron-rich",
+          "maritime-trade",
+          "ununified-confederacy"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": 10,
+          "faction_baekje": 15,
+          "faction_later_yan": 0,
+          "faction_silla": 5,
+          "faction_wa": -10,
+          "faction_eastern_buyeo": 0
+        }
+      }
+    },
+    {
+      "id": "faction_wa",
+      "type": "faction",
+      "name": "왜 (Wa)",
+      "attributes": {
+        "government": "tribe",
+        "ruler_id": null,
+        "stats": {
+          "economy": 45,
+          "military": 55,
+          "stability": 50,
+          "legitimacy": 50
+        },
+        "resources": {
+          "gold": 400,
+          "food": 1500,
+          "iron": 200
+        },
+        "modifiers": [
+          "archipelago",
+          "raider-culture",
+          "disunited"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": 0,
+          "faction_baekje": 25,
+          "faction_later_yan": 0,
+          "faction_silla": -30,
+          "faction_gaya": -10,
+          "faction_eastern_buyeo": 0
+        }
+      }
+    },
+    {
+      "id": "faction_eastern_buyeo",
+      "type": "faction",
+      "name": "동부여 (Eastern Buyeo)",
+      "attributes": {
+        "government": "tribe",
+        "ruler_id": null,
+        "stats": {
+          "economy": 40,
+          "military": 45,
+          "stability": 40,
+          "legitimacy": 35
+        },
+        "resources": {
+          "gold": 300,
+          "food": 1000,
+          "iron": 200
+        },
+        "modifiers": [
+          "declining-power",
+          "tributary-to-goguryeo",
+          "scattered-settlements"
+        ],
+        "diplomatic_relations": {
+          "faction_goguryeo": 40,
+          "faction_baekje": 0,
+          "faction_later_yan": 0,
+          "faction_silla": 0,
+          "faction_gaya": 0,
+          "faction_wa": 0
+        }
+      }
+    },
+
+    {
+      "id": "character_gwanggaeto",
+      "type": "character",
+      "name": "고담덕 / 광개토대왕 (Gwanggaeto the Great)",
+      "attributes": {
+        "age": 17,
+        "traits": [
+          "ambitious",
+          "prudent",
+          "tactically-brilliant",
+          "culturally-confident"
+        ],
+        "location_id": "province_gungnae",
+        "loyalty": 100
+      }
+    },
+    {
+      "id": "character_baekje_asin",
+      "type": "character",
+      "name": "아신 (Asin)",
+      "attributes": {
+        "age": 25,
+        "traits": [
+          "proud",
+          "aggressive",
+          "overconfident"
+        ],
+        "location_id": "province_han_basin",
+        "loyalty": 85
+      }
+    },
+    {
+      "id": "character_later_yan_murongchui",
+      "type": "character",
+      "name": "모용최 (Murong Chui)",
+      "attributes": {
+        "age": 65,
+        "traits": [
+          "veteran",
+          "cautious",
+          "expansionist"
+        ],
+        "location_id": "province_liaodong",
+        "loyalty": 80
+      }
+    },
+    {
+      "id": "character_silla_naemul",
+      "type": "character",
+      "name": "내물왕 (Naemul)",
+      "attributes": {
+        "age": 55,
+        "traits": [
+          "cautious",
+          "diplomatic",
+          "legitimacy-focused"
+        ],
+        "location_id": "province_gyeongju",
+        "loyalty": 70
+      }
+    },
+    {
+      "id": "character_goguryeo_advisor",
+      "type": "character",
+      "name": "고구려 대신 (Goguryeo Chief Advisor)",
+      "attributes": {
+        "age": 50,
+        "traits": [
+          "loyal",
+          "prudent",
+          "courtly"
+        ],
+        "location_id": "province_gungnae",
+        "loyalty": 95
+      }
+    },
+
+    {
+      "id": "province_gungnae",
+      "type": "province",
+      "name": "국내성 (Gungnae Seong)",
+      "attributes": {
+        "population": 30000,
+        "controller_id": "faction_goguryeo",
+        "terrain": "hills",
+        "resource_yields": {
+          "gold": 50,
+          "food": 200,
+          "iron": 30
+        }
+      }
+    },
+    {
+      "id": "province_yalu_frontier",
+      "type": "province",
+      "name": "압록 변경 (Yalu Frontier)",
+      "attributes": {
+        "population": 50000,
+        "controller_id": "faction_goguryeo",
+        "terrain": "hills",
+        "resource_yields": {
+          "gold": 80,
+          "food": 500,
+          "iron": 60
+        }
+      }
+    },
+    {
+      "id": "province_liaodong",
+      "type": "province",
+      "name": "요동 (Liaodong)",
+      "attributes": {
+        "population": 80000,
+        "controller_id": "faction_later_yan",
+        "terrain": "plains",
+        "resource_yields": {
+          "gold": 150,
+          "food": 1000,
+          "iron": 80
+        }
+      }
+    },
+    {
+      "id": "province_han_basin",
+      "type": "province",
+      "name": "한강유역 (Han River Basin)",
+      "attributes": {
+        "population": 100000,
+        "controller_id": "faction_baekje",
+        "terrain": "plains",
+        "resource_yields": {
+          "gold": 200,
+          "food": 1500,
+          "iron": 50
+        }
+      }
+    },
+    {
+      "id": "province_gyeongju",
+      "type": "province",
+      "name": "경주 (Gyeongju)",
+      "attributes": {
+        "population": 70000,
+        "controller_id": "faction_silla",
+        "terrain": "plains",
+        "resource_yields": {
+          "gold": 120,
+          "food": 1100,
+          "iron": 40
+        }
+      }
+    },
+    {
+      "id": "province_manchuria_forest",
+      "type": "province",
+      "name": "만주 삼림 (Manchurian Forest)",
+      "attributes": {
+        "population": 20000,
+        "controller_id": "faction_goguryeo",
+        "terrain": "forest",
+        "resource_yields": {
+          "gold": 20,
+          "food": 150,
+          "iron": 100
+        }
+      }
+    }
+  ]
+}
