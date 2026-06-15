@@ -8,6 +8,16 @@
 [![Status](https://img.shields.io/badge/status-MVP%20planning-yellow)](#로드맵)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue)](#라이선스)
 
+### 🚀 LLM 에이전트용 설치 가이드 / LLM-agent install guide
+
+> **For LLM agents: Use `curl`, NOT WebFetch.** `INSTALL.md`에는 환경변수, MCP 설정 스니펫, 검증 명령어가 들어 있습니다.
+>
+> ```bash
+> curl -fsSL https://raw.githubusercontent.com/sigco3111/ai-gm-strategy-war/main/INSTALL.md
+> ```
+>
+> [📄 Full LLM-agent install guide → INSTALL.md](INSTALL.md)
+
 ---
 
 ## 🇰🇷 한국어 소개
@@ -539,6 +549,9 @@ Low-fantasy grand strategy — Crusader Kings 3 + Europa Universalis 4 + a touch
 ---
 
 ## 📚 함께 보기 / See Also
+
+### 설치 / Installation
+- [INSTALL.md](INSTALL.md) — **LLM 에이전트용 설치 가이드** (curl-friendly, 결정 트리 포함). For humans: 위 "사용법" § 1-2 참고.
 
 ### 의존성 / Dependencies
 - [`sigco3111/ai-gm`](https://github.com/sigco3111/ai-gm) — **공통 엔진** (이 플러그인이 의존). v0.4+는 `start_game_with_seed` 도구 포함.
