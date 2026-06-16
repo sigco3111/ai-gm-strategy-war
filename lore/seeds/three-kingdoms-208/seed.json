@@ -1,474 +1,474 @@
 {
-  "game_id": "three-kingdoms-208",
-  "schema_version": 1,
-  "turn": 0,
-  "created_at": "208-04-15T00:00:00Z",
-  "event_log": [],
+ "game_id": "three-kingdoms-208",
+ "schema_version": 1,
+ "turn": 0,
+ "created_at": "208-04-15T00:00:00Z",
+ "event_log": [],
 
-  "entities": [
-    {
-      "id": "faction_wei",
-      "type": "faction",
-      "name": "曹魏 (Cao Wei)",
-      "attributes": {
-        "government": "warlord_state",
-        "ruler_id": "character_cao_cao",
-        "stats": {
-          "economy": 80,
-          "military": 90,
-          "stability": 75,
-          "legitimacy": 65
-        },
-        "resources": {
-          "gold": 5000,
-          "food": 8000,
-          "iron": 3000
-        },
-        "modifiers": [
-          "dominant-power",
-          "controls-han-court",
-          "southern-campaign",
-          "player-aligned"
-        ],
-        "diplomatic_relations": {
-          "faction_han_empire": 80,
-          "faction_lu_bu_remnants": -50,
-          "faction_yuan_shu": -70,
-          "faction_jingzhou_remnants": 30,
-          "faction_shu": -85,
-          "faction_wu": -80
-        }
-      }
-    },
-    {
-      "id": "faction_shu",
-      "type": "faction",
-      "name": "蜀漢 (Shu Han)",
-      "attributes": {
-        "government": "warlord_state",
-        "ruler_id": "character_liu_bei",
-        "stats": {
-          "economy": 35,
-          "military": 55,
-          "stability": 60,
-          "legitimacy": 90
-        },
-        "resources": {
-          "gold": 300,
-          "food": 2000,
-          "iron": 500
-        },
-        "modifiers": [
-          "righteous-cause",
-          "han-bloodline-claim",
-          "destitute-refugees",
-          "aspiring-emperor"
-        ],
-        "diplomatic_relations": {
-          "faction_han_empire": 70,
-          "faction_wu": 50,
-          "faction_wei": -85,
-          "faction_yuan_shu": -40,
-          "faction_jingzhou_remnants": 40,
-          "faction_lu_bu_remnants": 0
-        }
-      }
-    },
-    {
-      "id": "faction_wu",
-      "type": "faction",
-      "name": "東吳 (Eastern Wu)",
-      "attributes": {
-        "government": "warlord_state",
-        "ruler_id": "character_sun_quan",
-        "stats": {
-          "economy": 75,
-          "military": 75,
-          "stability": 80,
-          "legitimacy": 60
-        },
-        "resources": {
-          "gold": 4000,
-          "food": 6000,
-          "iron": 2000
-        },
-        "modifiers": [
-          "naval-power",
-          "yangtze-defenders",
-          "southern-stronghold",
-          "deciding-on-war"
-        ],
-        "diplomatic_relations": {
-          "faction_han_empire": 40,
-          "faction_shu": 50,
-          "faction_wei": -80,
-          "faction_jingzhou_remnants": 50,
-          "faction_yuan_shu": 10,
-          "faction_lu_bu_remnants": 0
-        }
-      }
-    },
-    {
-      "id": "faction_han_empire",
-      "type": "faction",
-      "name": "한 제국 (Han Empire)",
-      "attributes": {
-        "government": "puppet_empire",
-        "ruler_id": null,
-        "stats": {
-          "economy": 30,
-          "military": 5,
-          "stability": 30,
-          "legitimacy": 50
-        },
-        "resources": {
-          "gold": 200,
-          "food": 300,
-          "iron": 50
-        },
-        "modifiers": [
-          "puppet-court",
-          "symbolic-power",
-          "xian-emperor-figurehead"
-        ],
-        "diplomatic_relations": {
-          "faction_wei": 80,
-          "faction_shu": 70,
-          "faction_wu": 40,
-          "faction_jingzhou_remnants": 20,
-          "faction_yuan_shu": -50,
-          "faction_lu_bu_remnants": 0
-        }
-      }
-    },
-    {
-      "id": "faction_jingzhou_remnants",
-      "type": "faction",
-      "name": "형주 잔존 세력 (Jingzhou Remnants)",
-      "attributes": {
-        "government": "warlord_remnants",
-        "ruler_id": null,
-        "stats": {
-          "economy": 45,
-          "military": 40,
-          "stability": 25,
-          "legitimacy": 30
-        },
-        "resources": {
-          "gold": 800,
-          "food": 1500,
-          "iron": 600
-        },
-        "modifiers": [
-          "cai-mao-and-zhang-yun",
-          "internal-fracture",
-          "between-wei-and-sun-liu"
-        ],
-        "diplomatic_relations": {
-          "faction_wei": 30,
-          "faction_wu": 50,
-          "faction_shu": 40,
-          "faction_han_empire": 20,
-          "faction_yuan_shu": 0,
-          "faction_lu_bu_remnants": 0
-        }
-      }
-    },
-    {
-      "id": "faction_yuan_shu",
-      "type": "faction",
-      "name": "원술 (Yuan Shu)",
-      "attributes": {
-        "government": "self-proclaimed_empire",
-        "ruler_id": null,
-        "stats": {
-          "economy": 50,
-          "military": 30,
-          "stability": 15,
-          "legitimacy": 5
-        },
-        "resources": {
-          "gold": 3000,
-          "food": 1000,
-          "iron": 400
-        },
-        "modifiers": [
-          "illegitimate-emperor",
-          "declining",
-          "isolated-in-shouchun"
-        ],
-        "diplomatic_relations": {
-          "faction_han_empire": -50,
-          "faction_wei": -70,
-          "faction_shu": -40,
-          "faction_wu": 10,
-          "faction_jingzhou_remnants": 0,
-          "faction_lu_bu_remnants": -20
-        }
-      }
-    },
-    {
-      "id": "faction_lu_bu_remnants",
-      "type": "faction",
-      "name": "여포 잔여 세력 (Lü Bu Remnants)",
-      "attributes": {
-        "government": "warlord_remnants",
-        "ruler_id": null,
-        "stats": {
-          "economy": 25,
-          "military": 50,
-          "stability": 10,
-          "legitimacy": 15
-        },
-        "resources": {
-          "gold": 200,
-          "food": 500,
-          "iron": 200
-        },
-        "modifiers": [
-          "defeated-but-scattered",
-          "former-xu-province",
-          "low-credibility"
-        ],
-        "diplomatic_relations": {
-          "faction_wei": -50,
-          "faction_shu": 0,
-          "faction_wu": 0,
-          "faction_han_empire": 0,
-          "faction_jingzhou_remnants": 0,
-          "faction_yuan_shu": -20
-        }
-      }
-    },
+ "entities": [
+ {
+ "id": "faction_wei",
+ "type": "faction",
+ "name": "조위 (Cao Wei)",
+ "attributes": {
+ "government": "warlord_state",
+ "ruler_id": "character_cao_cao",
+ "stats": {
+ "economy": 80,
+ "military": 90,
+ "stability": 75,
+ "legitimacy": 65
+ },
+ "resources": {
+ "gold": 5000,
+ "food": 8000,
+ "iron": 3000
+ },
+ "modifiers": [
+ "dominant-power",
+ "controls-han-court",
+ "southern-campaign",
+ "player-aligned"
+ ],
+ "diplomatic_relations": {
+ "faction_han_empire": 80,
+ "faction_lu_bu_remnants": -50,
+ "faction_yuan_shu": -70,
+ "faction_jingzhou_remnants": 30,
+ "faction_shu": -85,
+ "faction_wu": -80
+ }
+ }
+ },
+ {
+ "id": "faction_shu",
+ "type": "faction",
+ "name": "촉한 (Shu Han)",
+ "attributes": {
+ "government": "warlord_state",
+ "ruler_id": "character_liu_bei",
+ "stats": {
+ "economy": 35,
+ "military": 55,
+ "stability": 60,
+ "legitimacy": 90
+ },
+ "resources": {
+ "gold": 300,
+ "food": 2000,
+ "iron": 500
+ },
+ "modifiers": [
+ "righteous-cause",
+ "han-bloodline-claim",
+ "destitute-refugees",
+ "aspiring-emperor"
+ ],
+ "diplomatic_relations": {
+ "faction_han_empire": 70,
+ "faction_wu": 50,
+ "faction_wei": -85,
+ "faction_yuan_shu": -40,
+ "faction_jingzhou_remnants": 40,
+ "faction_lu_bu_remnants": 0
+ }
+ }
+ },
+ {
+ "id": "faction_wu",
+ "type": "faction",
+ "name": "동오 (Eastern Wu)",
+ "attributes": {
+ "government": "warlord_state",
+ "ruler_id": "character_sun_quan",
+ "stats": {
+ "economy": 75,
+ "military": 75,
+ "stability": 80,
+ "legitimacy": 60
+ },
+ "resources": {
+ "gold": 4000,
+ "food": 6000,
+ "iron": 2000
+ },
+ "modifiers": [
+ "naval-power",
+ "yangtze-defenders",
+ "southern-stronghold",
+ "deciding-on-war"
+ ],
+ "diplomatic_relations": {
+ "faction_han_empire": 40,
+ "faction_shu": 50,
+ "faction_wei": -80,
+ "faction_jingzhou_remnants": 50,
+ "faction_yuan_shu": 10,
+ "faction_lu_bu_remnants": 0
+ }
+ }
+ },
+ {
+ "id": "faction_han_empire",
+ "type": "faction",
+ "name": "한 제국 (Han Empire)",
+ "attributes": {
+ "government": "puppet_empire",
+ "ruler_id": null,
+ "stats": {
+ "economy": 30,
+ "military": 5,
+ "stability": 30,
+ "legitimacy": 50
+ },
+ "resources": {
+ "gold": 200,
+ "food": 300,
+ "iron": 50
+ },
+ "modifiers": [
+ "puppet-court",
+ "symbolic-power",
+ "xian-emperor-figurehead"
+ ],
+ "diplomatic_relations": {
+ "faction_wei": 80,
+ "faction_shu": 70,
+ "faction_wu": 40,
+ "faction_jingzhou_remnants": 20,
+ "faction_yuan_shu": -50,
+ "faction_lu_bu_remnants": 0
+ }
+ }
+ },
+ {
+ "id": "faction_jingzhou_remnants",
+ "type": "faction",
+ "name": "형주 잔존 세력 (Jingzhou Remnants)",
+ "attributes": {
+ "government": "warlord_remnants",
+ "ruler_id": null,
+ "stats": {
+ "economy": 45,
+ "military": 40,
+ "stability": 25,
+ "legitimacy": 30
+ },
+ "resources": {
+ "gold": 800,
+ "food": 1500,
+ "iron": 600
+ },
+ "modifiers": [
+ "cai-mao-and-zhang-yun",
+ "internal-fracture",
+ "between-wei-and-sun-liu"
+ ],
+ "diplomatic_relations": {
+ "faction_wei": 30,
+ "faction_wu": 50,
+ "faction_shu": 40,
+ "faction_han_empire": 20,
+ "faction_yuan_shu": 0,
+ "faction_lu_bu_remnants": 0
+ }
+ }
+ },
+ {
+ "id": "faction_yuan_shu",
+ "type": "faction",
+ "name": "원술 (Yuan Shu)",
+ "attributes": {
+ "government": "self-proclaimed_empire",
+ "ruler_id": null,
+ "stats": {
+ "economy": 50,
+ "military": 30,
+ "stability": 15,
+ "legitimacy": 5
+ },
+ "resources": {
+ "gold": 3000,
+ "food": 1000,
+ "iron": 400
+ },
+ "modifiers": [
+ "illegitimate-emperor",
+ "declining",
+ "isolated-in-shouchun"
+ ],
+ "diplomatic_relations": {
+ "faction_han_empire": -50,
+ "faction_wei": -70,
+ "faction_shu": -40,
+ "faction_wu": 10,
+ "faction_jingzhou_remnants": 0,
+ "faction_lu_bu_remnants": -20
+ }
+ }
+ },
+ {
+ "id": "faction_lu_bu_remnants",
+ "type": "faction",
+ "name": "여포 잔여 세력 (Lü Bu Remnants)",
+ "attributes": {
+ "government": "warlord_remnants",
+ "ruler_id": null,
+ "stats": {
+ "economy": 25,
+ "military": 50,
+ "stability": 10,
+ "legitimacy": 15
+ },
+ "resources": {
+ "gold": 200,
+ "food": 500,
+ "iron": 200
+ },
+ "modifiers": [
+ "defeated-but-scattered",
+ "former-xu-province",
+ "low-credibility"
+ ],
+ "diplomatic_relations": {
+ "faction_wei": -50,
+ "faction_shu": 0,
+ "faction_wu": 0,
+ "faction_han_empire": 0,
+ "faction_jingzhou_remnants": 0,
+ "faction_yuan_shu": -20
+ }
+ }
+ },
 
-    {
-      "id": "character_cao_cao",
-      "type": "character",
-      "name": "조조 (曹操)",
-      "attributes": {
-        "age": 53,
-        "traits": [
-          "brilliant-strategist",
-          "cautious-against-rashness",
-          "poet",
-          "han-chancellor"
-        ],
-        "location_id": "province_xuchang",
-        "loyalty": 95,
-        "modifiers": [
-          "player-character-or-ally",
-          "weiguo-shishizhe",
-          "commands-220k-troops"
-        ]
-      }
-    },
-    {
-      "id": "character_liu_bei",
-      "type": "character",
-      "name": "유비 (劉備)",
-      "attributes": {
-        "age": 47,
-        "traits": [
-          "righteous-cause",
-          "han-bloodline-claim",
-          "charismatic-leader",
-          "currently-destitute"
-        ],
-        "location_id": "province_jingzhou",
-        "loyalty": 85,
-        "modifiers": [
-          "shu-founder",
-          "three-visits-to-zhuge-pending",
-          "ally-of-sun-quan"
-        ]
-      }
-    },
-    {
-      "id": "character_sun_quan",
-      "type": "character",
-      "name": "손권 (孫權)",
-      "attributes": {
-        "age": 22,
-        "traits": [
-          "young-decisive",
-          "jiangdong-heir",
-          "naval-strategist"
-        ],
-        "location_id": "province_jianye",
-        "loyalty": 80,
-        "modifiers": [
-          "wu-lord",
-          "weighing-alliance-vs-surrender",
-          "zhou-yus-commander"
-        ]
-      }
-    },
-    {
-      "id": "character_xun_yu",
-      "type": "character",
-      "name": "순욱 (荀彧)",
-      "attributes": {
-        "age": 41,
-        "traits": [
-          "chief-strategist",
-          "han-loyalist",
-          "foresighted",
-          "administrative-genius"
-        ],
-        "location_id": "province_xuchang",
-        "loyalty": 95,
-        "modifiers": [
-          "cao-caos-brain",
-          "holds-han-court",
-          "wuxiang"
-        ]
-      }
-    },
-    {
-      "id": "character_zhou_yu",
-      "type": "character",
-      "name": "주유 (周瑜)",
-      "attributes": {
-        "age": 33,
-        "traits": [
-          "young-commander",
-          "naval-mastermind",
-          "fire-tactic-genius",
-          "proud"
-        ],
-        "location_id": "province_jianye",
-        "loyalty": 90,
-        "modifiers": [
-          "red-cliffs-architect",
-          "sun-quans-chief",
-          "anti-cao-zealot"
-        ]
-      }
-    },
+ {
+ "id": "character_cao_cao",
+ "type": "character",
+ "name": "조조 (조조)",
+ "attributes": {
+ "age": 53,
+ "traits": [
+ "brilliant-strategist",
+ "cautious-against-rashness",
+ "poet",
+ "han-chancellor"
+ ],
+ "location_id": "province_xuchang",
+ "loyalty": 95,
+ "modifiers": [
+ "player-character-or-ally",
+ "weiguo-shishizhe",
+ "commands-220k-troops"
+ ]
+ }
+ },
+ {
+ "id": "character_liu_bei",
+ "type": "character",
+ "name": "유비 (유비)",
+ "attributes": {
+ "age": 47,
+ "traits": [
+ "righteous-cause",
+ "han-bloodline-claim",
+ "charismatic-leader",
+ "currently-destitute"
+ ],
+ "location_id": "province_jingzhou",
+ "loyalty": 85,
+ "modifiers": [
+ "shu-founder",
+ "three-visits-to-zhuge-pending",
+ "ally-of-sun-quan"
+ ]
+ }
+ },
+ {
+ "id": "character_sun_quan",
+ "type": "character",
+ "name": "손권 (손권)",
+ "attributes": {
+ "age": 22,
+ "traits": [
+ "young-decisive",
+ "jiangdong-heir",
+ "naval-strategist"
+ ],
+ "location_id": "province_jianye",
+ "loyalty": 80,
+ "modifiers": [
+ "wu-lord",
+ "weighing-alliance-vs-surrender",
+ "zhou-yus-commander"
+ ]
+ }
+ },
+ {
+ "id": "character_xun_yu",
+ "type": "character",
+ "name": "순욱 (순욱)",
+ "attributes": {
+ "age": 41,
+ "traits": [
+ "chief-strategist",
+ "han-loyalist",
+ "foresighted",
+ "administrative-genius"
+ ],
+ "location_id": "province_xuchang",
+ "loyalty": 95,
+ "modifiers": [
+ "cao-caos-brain",
+ "holds-han-court",
+ "wuxiang"
+ ]
+ }
+ },
+ {
+ "id": "character_zhou_yu",
+ "type": "character",
+ "name": "주유 (주유)",
+ "attributes": {
+ "age": 33,
+ "traits": [
+ "young-commander",
+ "naval-mastermind",
+ "fire-tactic-genius",
+ "proud"
+ ],
+ "location_id": "province_jianye",
+ "loyalty": 90,
+ "modifiers": [
+ "red-cliffs-architect",
+ "sun-quans-chief",
+ "anti-cao-zealot"
+ ]
+ }
+ },
 
-    {
-      "id": "province_xuchang",
-      "type": "province",
-      "name": "허창 (Xuchang)",
-      "attributes": {
-        "population": 300000,
-        "controller_id": "faction_wei",
-        "terrain": "plains",
-        "resource_yields": {
-          "gold": 500,
-          "food": 2000,
-          "iron": 300
-        },
-        "modifiers": [
-          "wei-capital",
-          "han-imperial-court",
-          "central-plains"
-        ]
-      }
-    },
-    {
-      "id": "province_luoyang",
-      "type": "province",
-      "name": "낙양 (Luoyang)",
-      "attributes": {
-        "population": 150000,
-        "controller_id": "faction_han_empire",
-        "terrain": "plains",
-        "resource_yields": {
-          "gold": 200,
-          "food": 800,
-          "iron": 200
-        },
-        "modifiers": [
-          "ancient-capital",
-          "ruined-by-dong-zhuo",
-          "symbolic-only"
-        ]
-      }
-    },
-    {
-      "id": "province_chengdu",
-      "type": "province",
-      "name": "성도 (Chengdu)",
-      "attributes": {
-        "population": 200000,
-        "controller_id": "faction_shu",
-        "terrain": "basin",
-        "resource_yields": {
-          "gold": 300,
-          "food": 3000,
-          "iron": 500
-        },
-        "modifiers": [
-          "shu-heartland",
-          "yi-province",
-          "abundant-grain",
-          "remote"
-        ]
-      }
-    },
-    {
-      "id": "province_jianye",
-      "type": "province",
-      "name": "건업 (Jianye)",
-      "attributes": {
-        "population": 400000,
-        "controller_id": "faction_wu",
-        "terrain": "river-valley",
-        "resource_yields": {
-          "gold": 600,
-          "food": 2500,
-          "iron": 400
-        },
-        "modifiers": [
-          "wu-capital",
-          "yangtze-river",
-          "naval-base",
-          "modern-nanjing"
-        ]
-      }
-    },
-    {
-      "id": "province_jingzhou",
-      "type": "province",
-      "name": "형주 (Jingzhou)",
-      "attributes": {
-        "population": 600000,
-        "controller_id": "faction_jingzhou_remnants",
-        "terrain": "crossroads",
-        "resource_yields": {
-          "gold": 400,
-          "food": 4000,
-          "iron": 600
-        },
-        "modifiers": [
-          "strategic-crossroad",
-          "north-half-cai-mao",
-          "south-half-pending-allocation",
-          "red-cliffs-site"
-        ]
-      }
-    },
-    {
-      "id": "province_xuzhou",
-      "type": "province",
-      "name": "서주 (Xuzhou)",
-      "attributes": {
-        "population": 800000,
-        "controller_id": "faction_wei",
-        "terrain": "plains",
-        "resource_yields": {
-          "gold": 300,
-          "food": 5000,
-          "iron": 500
-        },
-        "modifiers": [
-          "northern-breadbasket",
-          "former-yuan-shao",
-          "former-lu-bu",
-          "wei-controlled"
-        ]
-      }
-    }
-  ]
+ {
+ "id": "province_xuchang",
+ "type": "province",
+ "name": "허창 (Xuchang)",
+ "attributes": {
+ "population": 300000,
+ "controller_id": "faction_wei",
+ "terrain": "plains",
+ "resource_yields": {
+ "gold": 500,
+ "food": 2000,
+ "iron": 300
+ },
+ "modifiers": [
+ "wei-capital",
+ "han-imperial-court",
+ "central-plains"
+ ]
+ }
+ },
+ {
+ "id": "province_luoyang",
+ "type": "province",
+ "name": "낙양 (Luoyang)",
+ "attributes": {
+ "population": 150000,
+ "controller_id": "faction_han_empire",
+ "terrain": "plains",
+ "resource_yields": {
+ "gold": 200,
+ "food": 800,
+ "iron": 200
+ },
+ "modifiers": [
+ "ancient-capital",
+ "ruined-by-dong-zhuo",
+ "symbolic-only"
+ ]
+ }
+ },
+ {
+ "id": "province_chengdu",
+ "type": "province",
+ "name": "성도 (Chengdu)",
+ "attributes": {
+ "population": 200000,
+ "controller_id": "faction_shu",
+ "terrain": "basin",
+ "resource_yields": {
+ "gold": 300,
+ "food": 3000,
+ "iron": 500
+ },
+ "modifiers": [
+ "shu-heartland",
+ "yi-province",
+ "abundant-grain",
+ "remote"
+ ]
+ }
+ },
+ {
+ "id": "province_jianye",
+ "type": "province",
+ "name": "건업 (Jianye)",
+ "attributes": {
+ "population": 400000,
+ "controller_id": "faction_wu",
+ "terrain": "river-valley",
+ "resource_yields": {
+ "gold": 600,
+ "food": 2500,
+ "iron": 400
+ },
+ "modifiers": [
+ "wu-capital",
+ "yangtze-river",
+ "naval-base",
+ "modern-nanjing"
+ ]
+ }
+ },
+ {
+ "id": "province_jingzhou",
+ "type": "province",
+ "name": "형주 (Jingzhou)",
+ "attributes": {
+ "population": 600000,
+ "controller_id": "faction_jingzhou_remnants",
+ "terrain": "crossroads",
+ "resource_yields": {
+ "gold": 400,
+ "food": 4000,
+ "iron": 600
+ },
+ "modifiers": [
+ "strategic-crossroad",
+ "north-half-cai-mao",
+ "south-half-pending-allocation",
+ "red-cliffs-site"
+ ]
+ }
+ },
+ {
+ "id": "province_xuzhou",
+ "type": "province",
+ "name": "서주 (Xuzhou)",
+ "attributes": {
+ "population": 800000,
+ "controller_id": "faction_wei",
+ "terrain": "plains",
+ "resource_yields": {
+ "gold": 300,
+ "food": 5000,
+ "iron": 500
+ },
+ "modifiers": [
+ "northern-breadbasket",
+ "former-yuan-shao",
+ "former-lu-bu",
+ "wei-controlled"
+ ]
+ }
+ }
+ ]
 }

@@ -47,7 +47,6 @@ def test_lore_files_exist_per_entity(seed_payload):
             assert (SEED_DIR / "characters" / f"{eid}.md").exists(), f"missing {eid}.md"
         elif entity["type"] == "province":
             assert (SEED_DIR / "regions" / f"{eid}.md").exists(), f"missing {eid}.md"
-    # overview.md
     assert (SEED_DIR / "overview.md").exists(), "missing overview.md"
 
 

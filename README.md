@@ -40,8 +40,8 @@
 
 ```
 ai-gm (공통 엔진) ← ai-gm-strategy-war (이 repo, 장르 1)
-                  ← ai-gm-fantasy-rpg (장르 2, 예정)
-                  ← ai-gm-sci-fi-explore (장르 3, 예정)
+ ← ai-gm-fantasy-rpg (장르 2, 예정)
+ ← ai-gm-sci-fi-explore (장르 3, 예정)
 ```
 
 ---
@@ -66,8 +66,8 @@ The player rules **one nation**. The AI GM operates **all other nations, charact
 
 ```
 ai-gm (core engine) ← ai-gm-strategy-war (this repo, genre 1)
-                  ← ai-gm-fantasy-rpg (genre 2, planned)
-                  ← ai-gm-sci-fi-explore (genre 3, planned)
+ ← ai-gm-fantasy-rpg (genre 2, planned)
+ ← ai-gm-sci-fi-explore (genre 3, planned)
 ```
 
 ---
@@ -102,7 +102,7 @@ The GM opens with a single question — **"What kind of game do you want to play
 | 시드 / Seed | 시대 / Era | 톤 / Tone | 규모 / Scale | 플레이어 국가 / Player nation |
 |------|------|------|------|------|
 | **고구려 391** (Goguryeo 391) | 4세기 후반 (삼국 시대 전기) | 사실주의 / 영토 확장 | 중규모 | 고구려 (광개토대왕 즉위 직후) |
-| **삼국지 208** (Three Kingdoms 208) | 후한말 (208 CE, 적벽 직전) | 사실주의 / 천하통일 | 중규모 | 조조의 위 (曹魏) — 한 조정 + 북중원 |
+| **삼국지 208** (Three Kingdoms 208) | 후한말 (208 CE, 적벽 직전) | 사실주의 / 천하통일 | 중규모 | 조조의 위 (조위) — 한 조정 + 북중원 |
 
 샘플 시드는 **그냥 시작점**입니다 — 본게임에 들어서면 톤·규칙·세력은 GM이 자유롭게 변주할 수 있어요.
 
@@ -126,7 +126,7 @@ You can also drop your own YAML/JSON into `lore/seeds/` to hand the GM a fully c
 >
 > **This is *one* example. The "Start a New Game" section above lets you pick anything you want.**
 
-391년, 고구려. **태왕(광개토대왕)** 이 즉위한 지 얼마 되지 않아 동방의 패권을 향한 질풍노도의 시기가 펼쳐집니다. 한반도에서 백제·신라·가야, 만주에서 후燕·선비, 바다 건너 왜국까지 — 오합지졸의 영토가 이제 제국의 서막을 올립니다.
+391년, 고구려. **태왕(광개토대왕)** 이 즉위한 지 얼마 되지 않아 동방의 패권을 향한 질풍노도의 시기가 펼쳐집니다. 한반도에서 백제·신라·가야, 만주에서 후연·선비, 바다 건너 왜국까지 — 오합지졸의 영토가 이제 제국의 서막을 올립니다.
 
 The year 391. **Gwanggaeto the Great** has just ascended the throne of **Goguryeo** — and an era of storm and conquest begins. On the peninsula: Baekje, Silla, Gaya. In Manchuria: Former Yan and the Xianbei. Across the sea: Wa (Japan). What was once a small kingdom now stands at the threshold of empire.
 
@@ -168,45 +168,45 @@ The README's rich nested `nations{}` / `characters{}` / `active_wars[]` shape is
 
 ```
 ai-gm-strategy-war/
-├── lore/                                  # 장르 콘텐츠 (Git 추적)
-│   ├── rules/                             # [CHUNK: rules] (장르 공통, 핀 고정)
-│   │   ├── succession.md                  # 3 chunks: succession types, claims, civil war
-│   │   ├── warfare.md                     # 3 chunks: war declaration, battle, siege
-│   │   ├── diplomacy.md                   # 3 chunks: relations, alliances, trade
-│   │   └── economy.md                     # 3 chunks: production, treasury, food/famine
-│   ├── seeds/                             # 시작 가능한 시드
-│   │   ├── goguryeo-391/                  # 샘플 시드 1 (고구려 391, 광개토대왕 즉위)
-│   │   │   ├── seed.json                  # state-shape 페이로드 (18 entities, validates)
-│   │   │   ├── overview.md                # 1-page narrative intro
-│   │   │   ├── factions/                  # 4 markdown files (goguryeo, baekje, yan, neighbors)
-│   │   │   ├── characters/                # 3 markdown files (gwanggaeto, advisors, rivals)
-│   │   │   └── regions/                   # 3 markdown files (gungnae, korean_peninsula, manchuria)
-│   │   ├── three-kingdoms-208/            # 샘플 시드 2 (후한말 208 CE, 적벽대전 직전)
-│   │   │   ├── seed.json                  # state-shape 페이로드 (18 entities, validates)
-│   │   │   ├── overview.md                # 시대 개관 (적벽 직전)
-│   │   │   ├── factions/                  # 7 markdown files (위/촉/오/한제국/형주잔존/원술/여포)
-│   │   │   ├── characters/                # 5 markdown files (조조/유비/손권/순욱/주유)
-│   │   │   └── regions/                   # 6 markdown files (허창/낙양/성도/건업/형주/서주)
-│   │   └── _template/                     # 새 시드 작성용 스켈레톤
-│   │       ├── seed.template.json
-│   │       └── overview.template.md
-│   └── _shared/                           # 시드 간 공유 청크 (예: 공통 룰)
+├── lore/ # 장르 콘텐츠 (Git 추적)
+│ ├── rules/ # [CHUNK: rules] (장르 공통, 핀 고정)
+│ │ ├── succession.md # 3 chunks: succession types, claims, civil war
+│ │ ├── warfare.md # 3 chunks: war declaration, battle, siege
+│ │ ├── diplomacy.md # 3 chunks: relations, alliances, trade
+│ │ └── economy.md # 3 chunks: production, treasury, food/famine
+│ ├── seeds/ # 시작 가능한 시드
+│ │ ├── goguryeo-391/ # 샘플 시드 1 (고구려 391, 광개토대왕 즉위)
+│ │ │ ├── seed.json # state-shape 페이로드 (18 entities, validates)
+│ │ │ ├── overview.md # 1-page narrative intro
+│ │ │ ├── factions/ # 4 markdown files (goguryeo, baekje, yan, neighbors)
+│ │ │ ├── characters/ # 3 markdown files (gwanggaeto, advisors, rivals)
+│ │ │ └── regions/ # 3 markdown files (gungnae, korean_peninsula, manchuria)
+│ │ ├── three-kingdoms-208/ # 샘플 시드 2 (후한말 208 CE, 적벽대전 직전)
+│ │ │ ├── seed.json # state-shape 페이로드 (18 entities, validates)
+│ │ │ ├── overview.md # 시대 개관 (적벽 직전)
+│ │ │ ├── factions/ # 7 markdown files (위/촉/오/한제국/형주잔존/원술/여포)
+│ │ │ ├── characters/ # 5 markdown files (조조/유비/손권/순욱/주유)
+│ │ │ └── regions/ # 6 markdown files (허창/낙양/성도/건업/형주/서주)
+│ │ └── _template/ # 새 시드 작성용 스켈레톤
+│ │ ├── seed.template.json
+│ │ └── overview.template.md
+│ └── _shared/ # 시드 간 공유 청크 (예: 공통 룰)
 │
-├── schemas/                               # Genre-Specific Schema Reference
-│   └── README.md                          # Option A: rich → flat entity 매핑 문서
+├── schemas/ # Genre-Specific Schema Reference
+│ └── README.md # Option A: rich → flat entity 매핑 문서
 │
-├── system_prompt.md                       # GM 행동 규약 (10 sections, 119 LOC)
-├── seed_template.json                     # 새 시드 작성을 위한 정형 계약
-├── games/                                 # (gitignored) 실제 진행 게임 디렉토리
-│   └── .gitkeep
-├── examples/                              # 샘플 트랜스크립트
-│   └── turn-001-founding.jsonl            # 12-line JSONL (user→GM→tool_call→tool_result 시퀀스)
+├── system_prompt.md # GM 행동 규약 (10 sections, 119 LOC)
+├── seed_template.json # 새 시드 작성을 위한 정형 계약
+├── games/ # (gitignored) 실제 진행 게임 디렉토리
+│ └──.gitkeep
+├── examples/ # 샘플 트랜스크립트
+│ └── turn-001-founding.jsonl # 12-line JSONL (user→GM→tool_call→tool_result 시퀀스)
 │
-├── tests/                                 # 14 pytest (TDD)
-│   ├── conftest.py                        # tmp_games_dir fixture
-│   ├── test_seed_validates.py             # 6 tests: state schema, ID pattern, cross-refs, stats
-│   ├── test_lore_chunks.py                # 5 tests: chunking, required fields, no dupes
-│   └── test_e2e_integration.py            # 3 tests: start_game, advance_turn, read_lore end-to-end
+├── tests/ # 14 pytest (TDD)
+│ ├── conftest.py # tmp_games_dir fixture
+│ ├── test_seed_validates.py # 6 tests: state schema, ID pattern, cross-refs, stats
+│ ├── test_lore_chunks.py # 5 tests: chunking, required fields, no dupes
+│ └── test_e2e_integration.py # 3 tests: start_game, advance_turn, read_lore end-to-end
 │
 ├── LICENSE
 └── README.md
@@ -232,13 +232,13 @@ git clone https://github.com/sigco3111/ai-gm-strategy-war.git
 cd ai-gm-strategy-war
 
 # 1.2. ai-gm 코어 설치 (editable 모드, dev 의존성 포함) / Install core
-cd ../ai-gm
+cd../ai-gm
 pip install -e ".[dev]"
-cd ../ai-gm-strategy-war
+cd../ai-gm-strategy-war
 
 # 1.3. 의존성 확인 / Verify dependencies
 python -c "from ai_gm.state.validation import validate_and_parse; print('ai-gm OK')"
-python -m pytest tests/ -v   # 14/14 should pass
+python -m pytest tests/ -v # 14/14 should pass
 ```
 
 > **왜 14 테스트인가?** 이 플러그인은 콘텐츠 라이브러리입니다. ai-gm 코어가 진실의 출처(source of truth)이고, 우리는 그 위에 얹는 콘텐츠가 코어의 계약을 위반하지 않는지 검증합니다. 14 테스트가 정확히 그 검증(시드 검증 + 청크 검증 + end-to-end 시드 부팅 검증)을 합니다.
@@ -265,7 +265,7 @@ mkdir -p "$AI_GM_GAMES_DIR"
 
 ```bash
 # 3.1. ai-gm 코어 디렉토리에서 (플러그인 환경변수 상속)
-cd ../ai-gm
+cd../ai-gm
 python -m ai_gm
 # 이제 FastMCP 서버가 stdin/stdout JSON-RPC로 대기 중
 ```
@@ -289,33 +289,33 @@ python -m ai_gm
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "tools/call",
-  "params": {
-    "name": "start_game_with_seed",
-    "arguments": {
-      "seed_id": "goguryeo-391"
-    }
-  }
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "tools/call",
+ "params": {
+ "name": "start_game_with_seed",
+ "arguments": {
+ "seed_id": "goguryeo-391"
+ }
+ }
 }
 ```
 
 **응답:**
 ```json
 {
-  "ok": true,
-  "game_id": "goguryeo-391",
-  "state": { "game_id": "goguryeo-391", "turn": 0, "entities": [ ... 18 entities ... ] },
-  "seed_meta": {
-    "seed_name": "Goguryeo 391",
-    "era": "Late 4th century CE (Three Kingdoms prelude)",
-    "tone": "realistic",
-    "player_nation_id": "faction_goguryeo"
-  },
-  "lore_files_indexed": 6,
-  "lore_chunks_indexed": 23,
-  "world_md_path": "/.../goguryeo-391/lore/world.md"
+ "ok": true,
+ "game_id": "goguryeo-391",
+ "state": { "game_id": "goguryeo-391", "turn": 0, "entities": [... 18 entities... ] },
+ "seed_meta": {
+ "seed_name": "Goguryeo 391",
+ "era": "Late 4th century CE (Three Kingdoms prelude)",
+ "tone": "realistic",
+ "player_nation_id": "faction_goguryeo"
+ },
+ "lore_files_indexed": 6,
+ "lore_chunks_indexed": 23,
+ "world_md_path": "/.../goguryeo-391/lore/world.md"
 }
 ```
 
@@ -335,15 +335,15 @@ python -m ai_gm
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 1,
-  "method": "tools/call",
-  "params": {
-    "name": "start_game",
-    "arguments": {
-      "payload": { /* the seed.json content with _meta stripped */ }
-    }
-  }
+ "jsonrpc": "2.0",
+ "id": 1,
+ "method": "tools/call",
+ "params": {
+ "name": "start_game",
+ "arguments": {
+ "payload": { /* the seed.json content with _meta stripped */ }
+ }
+ }
 }
 ```
 
@@ -355,39 +355,39 @@ python -m ai_gm
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 4,
-  "method": "tools/call",
-  "params": {
-    "name": "read_state",
-    "arguments": { "game_id": "goguryeo-391" }
-  }
+ "jsonrpc": "2.0",
+ "id": 4,
+ "method": "tools/call",
+ "params": {
+ "name": "read_state",
+ "arguments": { "game_id": "goguryeo-391" }
+ }
 }
 ```
 
 ```json
 {
-  "jsonrpc": "2.0",
-  "id": 5,
-  "method": "tools/call",
-  "params": {
-    "name": "advance_turn",
-    "arguments": {
-      "game_id": "goguryeo-391",
-      "event": {
-        "event_id": "ev-founding-001",
-        "turn": 0,
-        "actor_id": "character_gwanggaeto",
-        "action": "diplomacy",
-        "payload": {
-          "target_faction_id": "faction_silla",
-          "treaty_type": "defensive",
-          "gifts": ["10_gold", "5_iron"]
-        },
-        "reason": "Founding action: open diplomatic channel with Silla."
-      }
-    }
-  }
+ "jsonrpc": "2.0",
+ "id": 5,
+ "method": "tools/call",
+ "params": {
+ "name": "advance_turn",
+ "arguments": {
+ "game_id": "goguryeo-391",
+ "event": {
+ "event_id": "ev-founding-001",
+ "turn": 0,
+ "actor_id": "character_gwanggaeto",
+ "action": "diplomacy",
+ "payload": {
+ "target_faction_id": "faction_silla",
+ "treaty_type": "defensive",
+ "gifts": ["10_gold", "5_iron"]
+ },
+ "reason": "Founding action: open diplomatic channel with Silla."
+ }
+ }
+ }
 }
 ```
 
@@ -399,17 +399,17 @@ GM은 도구 결과를 받아 서술로 풀어냅니다. **임의 숫자 금지*
 ```json
 // ~/.config/opencode/mcp.json
 {
-  "mcpServers": {
-    "ai-gm": {
-      "command": "python",
-      "args": ["-m", "ai_gm"],
-      "cwd": "/path/to/ai-gm",
-      "env": {
-        "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war",
-        "AI_GM_GAMES_DIR": "/path/to/your/games/dir"
-      }
-    }
-  }
+ "mcpServers": {
+ "ai-gm": {
+ "command": "python",
+ "args": ["-m", "ai_gm"],
+ "cwd": "/path/to/ai-gm",
+ "env": {
+ "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war",
+ "AI_GM_GAMES_DIR": "/path/to/your/games/dir"
+ }
+ }
+ }
 }
 ```
 
@@ -417,17 +417,17 @@ GM은 도구 결과를 받아 서술로 풀어냅니다. **임의 숫자 금지*
 ```json
 // ~/.claude/mcp.json
 {
-  "mcpServers": {
-    "ai-gm": {
-      "type": "stdio",
-      "command": "python",
-      "args": ["-m", "ai_gm"],
-      "cwd": "/path/to/ai-gm",
-      "env": {
-        "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war"
-      }
-    }
-  }
+ "mcpServers": {
+ "ai-gm": {
+ "type": "stdio",
+ "command": "python",
+ "args": ["-m", "ai_gm"],
+ "cwd": "/path/to/ai-gm",
+ "env": {
+ "AI_GM_PLUGINS_DIR": "/path/to/ai-gm-strategy-war"
+ }
+ }
+ }
 }
 ```
 
@@ -440,7 +440,7 @@ GM은 도구 결과를 받아 서술로 풀어냅니다. **임의 숫자 금지*
 
 ```bash
 # ai-gm 코어의 수동 QA 스크립트 — 이 플러그인도 자동으로 exercise함
-cd ../ai-gm
+cd../ai-gm
 python scripts/manual_qa.py 2>&1 | tee /tmp/manual_qa_phase4.log
 ```
 
@@ -458,16 +458,16 @@ python scripts/manual_qa.py 2>&1 | tee /tmp/manual_qa_phase4.log
 
 ```
 lore/seeds/<your-seed-id>/
-├── seed.json              # state-shape JSON (schema_version=1, entities)
-├── overview.md            # 자유 형식 (chunk 헤더 없어도 됨)
-├── factions/              # [CHUNK: faction -- <name>] 형식
-├── characters/             # [CHUNK: character -- <name>] 형식
-└── regions/               # [CHUNK: location -- <name>] 형식
+├── seed.json # state-shape JSON (schema_version=1, entities)
+├── overview.md # 자유 형식 (chunk 헤더 없어도 됨)
+├── factions/ # [CHUNK: faction -- <name>] 형식
+├── characters/ # [CHUNK: character -- <name>] 형식
+└── regions/ # [CHUNK: location -- <name>] 형식
 ```
 
 **필수 검증 (run this before committing):**
 ```bash
-cd ../ai-gm-strategy-war
+cd../ai-gm-strategy-war
 PYTHONPATH="../ai-gm/src" python -m pytest tests/ -v
 # 14/14 pass = good to commit
 ```
@@ -487,7 +487,7 @@ PYTHONPATH="../ai-gm/src" python -m pytest tests/ -v
 ### 10. 통합 테스트 / Running the integration tests
 
 ```bash
-cd ../ai-gm-strategy-war
+cd../ai-gm-strategy-war
 PYTHONPATH="../ai-gm/src" python -m pytest tests/ -v
 ```
 
