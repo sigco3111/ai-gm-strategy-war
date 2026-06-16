@@ -102,7 +102,11 @@ The GM opens with a single question — **"What kind of game do you want to play
 | 시드 / Seed | 시대 / Era | 톤 / Tone | 규모 / Scale | 플레이어 국가 / Player nation |
 |------|------|------|------|------|
 | **고구려 391** (Goguryeo 391) | 4세기 후반 (삼국 시대 전기) | 사실주의 / 영토 확장 | 중규모 | 고구려 (광개토대왕 즉위 직후) |
-| _(더 많은 샘플 시드 추가 예정)_ | | | | |
+| **삼국지 208** (Three Kingdoms 208) | 후한말 (208 CE, 적벽 직전) | 사실주의 / 천하통일 | 중규모 | 조조의 위 (曹魏) — 한 조정 + 북중원 |
+
+샘플 시드는 **그냥 시작점**입니다 — 본게임에 들어서면 톤·규칙·세력은 GM이 자유롭게 변주할 수 있어요.
+
+Sample seeds are just **starting points** — once the game begins, the GM may freely riff on tone, rules, and factions.
 
 샘플 시드는 **그냥 시작점**입니다 — 본게임에 들어서면 톤·규칙·세력은 GM이 자유롭게 변주할 수 있어요.
 
@@ -177,6 +181,12 @@ ai-gm-strategy-war/
 │   │   │   ├── factions/                  # 4 markdown files (goguryeo, baekje, yan, neighbors)
 │   │   │   ├── characters/                # 3 markdown files (gwanggaeto, advisors, rivals)
 │   │   │   └── regions/                   # 3 markdown files (gungnae, korean_peninsula, manchuria)
+│   │   ├── three-kingdoms-208/            # 샘플 시드 2 (후한말 208 CE, 적벽대전 직전)
+│   │   │   ├── seed.json                  # state-shape 페이로드 (18 entities, validates)
+│   │   │   ├── overview.md                # 시대 개관 (적벽 직전)
+│   │   │   ├── factions/                  # 7 markdown files (위/촉/오/한제국/형주잔존/원술/여포)
+│   │   │   ├── characters/                # 5 markdown files (조조/유비/손권/순욱/주유)
+│   │   │   └── regions/                   # 6 markdown files (허창/낙양/성도/건업/형주/서주)
 │   │   └── _template/                     # 새 시드 작성용 스켈레톤
 │   │       ├── seed.template.json
 │   │       └── overview.template.md
@@ -525,7 +535,7 @@ tests/test_e2e_integration.py::test_e2e_read_lore_finds_gungnae_chunk PASSED
 | **0. 계획** | 아키텍처, README, 시드 시스템 설계 | ✅ 완료 |
 | **1. 시드 시스템** | `seed_template.json` + `lore/seeds/goguryeo-391/` (샘플 1개) + 14 tests | ✅ 완료 (10 커밋) |
 | **2. 스키마** | 장르별 JSON 스키마 — 코어의 `start_game_with_seed`로 통합됨 | ✅ 완료 (ai-gm 코어 Phase 4) |
-| **3. 샘플 시드 2~3** | 시드 옵션 확장 (예: 제국崩壊 476, 산업혁명 영국 등) | ⏳ 다음 |
+| **3. 샘플 시드 2~3** | `lore/seeds/three-kingdoms-208/` 추가 (후한말 208 CE, 적벽 직전) + 6 tests 추가 | ✅ 완료 |
 | **4. 시드 빌더 도구** | `start_game_with_seed`는 ✅ 완료. 대화형 설정 UI는 ⏳ | ⏳ 부분 |
 | **5. 샘플 플레이** | 50턴 진행 가능한 샘플 | ⏳ |
 | **6. NPC 자율성** | AI가 다른 국가 내부 결정을 운영 | ⏳ |
